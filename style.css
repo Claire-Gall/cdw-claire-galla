@@ -141,18 +141,3 @@ button:hover {
 #canvas-container-3 {
   margin-bottom: 60px;                /* Extra space after the last canvas */
 }
-
-/* Style for Three.js canvas containers to add spacing between them */
-#threejs-container-1,
-#threejs-container-2,
-#threejs-container-3 {
-  margin-bottom: 40px;                /* Add 40 pixels of space below each canvas */
-  border: 1px solid #eee;             /* Add a subtle border around each canvas */
-  border-radius: 4px;                 /* Add slightly rounded corners */
-  overflow: hidden;                   /* Ensure canvas content doesn't overflow the border */
-}
-
-/* Add extra spacing after the last Three.js canvas container */
-#threejs-container-3 {
-  margin-bottom: 60px;                /* Extra space after the last canvas */
-}
