@@ -3,7 +3,7 @@
 body {
   font-family: 'EB Garamond', serif;
   background-color: #f33b27;
-  color: #222;
+  color: #ffffff;
   margin: 0;
   padding: 0;
   font-size: 20px;
@@ -134,7 +134,7 @@ main {
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
-  background: #f9f9f9;
+  background: #8d8686;
 }
 
 /* All D3, Three.js, and p5.js canvas containers */
@@ -158,13 +158,13 @@ svg {
   height: auto;
 }
 .tooltip {
-  position: absolute;
+  position: relative;
   pointer-events: none;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.7);
+  color: #0c0a0a;
   padding: 6px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 8%;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
