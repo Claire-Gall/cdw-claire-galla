@@ -144,7 +144,7 @@ main {
   position: relative;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(225, 220, 157, 0.05);
   padding: 1rem;
   min-height: 300px;
 }
@@ -167,4 +167,14 @@ svg {
   font-size: 8%;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+.axis path,
+.axis line {
+  stroke: #444;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 12px;
+  fill: #222;
 }

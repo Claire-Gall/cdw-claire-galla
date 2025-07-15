@@ -1,22 +1,41 @@
-id,name,role,age,department,friends,size,color
-Alice,Alice Johnson,student,22,Computer Science,15,25,#ff6b6b
-Bob,Bob Smith,professor,45,Mathematics,8,35,#4ecdc4
-Carol,Carol Davis,student,20,Physics,12,22,#ff6b6b
-David,David Wilson,professor,38,Computer Science,10,32,#4ecdc4
-Eve,Eve Brown,student,21,Mathematics,18,28,#ff6b6b
-Frank,Frank Miller,professor,52,Physics,6,40,#4ecdc4
-Grace,Grace Lee,student,19,Computer Science,20,24,#ff6b6b
-Henry,Henry Chen,professor,41,Mathematics,12,34,#4ecdc4
-Iris,Iris Rodriguez,student,23,Physics,14,26,#ff6b6b
-Jack,Jack Thompson,professor,47,Computer Science,9,36,#4ecdc4
-Kate,Kate Williams,student,20,Mathematics,16,23,#ff6b6b
-Liam,Liam O'Connor,professor,39,Physics,11,33,#4ecdc4
-Maya,Maya Patel,student,22,Computer Science,17,27,#ff6b6b
-Noah,Noah Garcia,professor,44,Mathematics,7,37,#4ecdc4
-Olivia,Olivia Taylor,student,21,Physics,13,25,#ff6b6b
-Paul,Paul Anderson,professor,50,Computer Science,8,38,#4ecdc4
-Quinn,Quinn Martinez,student,19,Mathematics,19,22,#ff6b6b
-Ruby,Ruby Johnson,professor,36,Physics,14,31,#4ecdc4
-Sam,Sam Davis,student,24,Computer Science,15,29,#ff6b6b
-Tina,Tina Wang,professor,43,Mathematics,10,35,#4ecdc4
-Uma,Uma Singh,student,20,Physics,18,24,#ff6b6b 
+id,Art,Type of Piece,age,color
+Participant 1,Under Scan,Installation,45,#ff5733
+Participant 2,Under Scan,Installation,30,#33ff57
+Participant 3,Under Scan,Installation,25,#3357ff
+Participant 4,Under Scan,Installation,40,#f1c40f
+Participant 5,Under Scan,Installation,35,#8e44ad
+Participant 6,Under Scan,Installation,50,#e74c3c
+Participant 7,Under Scan,Installation,28,#3498db
+Participant 8,Under Scan,Installation,32,#2ecc71
+Participant 9,Under Scan,Installation,38,#9b59b6
+Participant 10,Under Scan,Installation,22,#f39c12
+Participant 11,Under Scan,Installation,29,#d35400
+Participant 12,Under Scan,Installation,31,#1abc9c
+Participant 13,Under Scan,Installation,27,#34495e
+Participant 14,Under Scan,Installation,33,#e67e22
+Participant 15,Under Scan,Installation,36,#c0392b
+Participant 16,Under Scan,Installation,41,#7f8c8d
+Participant 17,Under Scan,Installation,24,#16a085
+Participant 18,Under Scan,Installation,39,#2980b9
+Participant 19,Under Scan,Installation,26,#8e44ad
+Participant 20,Under Scan,Installation,34,#f1c40f
+Participant 21,Under Scan,Installation,37,#2c3e50
+Participant 22,Under Scan,Installation,23,#d35400
+Participant 23,Under Scan,Installation,42,#e67e22
+Participant 24,Under Scan,Installation,44,#c0392b
+Participant 25,Under Scan,Installation,46,#f39c12
+Participant 26,Under Scan,Installation,48,#1abc9c
+Participant 27,Under Scan,Installation,49,#34495e
+Participant 28,Under Scan,Installation,51,#16a085
+Participant 29,Under Scan,Installation,52,#2980b9
+Participant 30,Under Scan,Installation,53,#8e44ad
+Participant 31,Under Scan,Installation,54,#f1c40f
+Participant 32,Under Scan,Installation,55,#2c3e50
+Participant 33,Under Scan,Installation,56,#d35400
+Participant 34,Under Scan,Installation,57,#e67e22
+Participant 35,Under Scan,Installation,58,#c0392b
+Participant 36,Under Scan,Installation,59,#f39c12
+Participant 37,Under Scan,Installation,60,#1abc9c
+Participant 38,Under Scan,Installation,61,#34495e
+Participant 39,Under Scan,Installation,62,#16a085
+Participant 40,Under Scan,Installation,63,#2980b9
