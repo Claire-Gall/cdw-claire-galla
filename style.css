@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap');
 
 body {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Courier New', serif;
   background-color: #f33b27;
-  color: #ffffff;
+  color: #141212;
   margin: 0;
   padding: 0;
   font-size: 20px;
@@ -139,12 +139,24 @@ main {
 
 /* All D3, Three.js, and p5.js canvas containers */
 #d3-container-1,
+#d3-container-1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+  align-items: center;      /* centers vertically if height is defined */
+  padding: 20px 0;          /* optional vertical spacing */
+}
+
+#d3-container-1 svg {
+  display: block;
+  max-width: 100%;
+}
 #d3-container-2,
 #d3-container-3 {
   position: relative;
-  background: #fff;
+  background: #030202;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(225, 220, 157, 0.05);
+  box-shadow: 0 2px 6px rgba(2, 2, 2, 0.05);
   padding: 1rem;
   min-height: 300px;
 }
@@ -156,6 +168,9 @@ svg {
   margin: 0 auto;
   max-width: 100%;
   height: auto;
+}
+.tooltip {
+  font-size: 12px;
 }
 .tooltip {
   position: relative;
@@ -177,4 +192,31 @@ svg {
 .axis text {
   font-size: 12px;
   fill: #222;
+}
+/* Dark Mode Styling for #d3-container-2 */
+#d3-container-2.dark-mode {
+  background-color: #111;
+  color: #f5f5f5;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+#d3-container-2.dark-mode .axis path,
+#d3-container-2.dark-mode .axis line {
+  stroke: #888;
+}
+
+#d3-container-2.dark-mode .axis text {
+  fill: #ccc;
+}
+
+#d3-container-2.dark-mode circle {
+  fill: #f5f5f5;
+  stroke: #f33b27;
+}
+
+#d3-container-2.dark-mode line {
+  stroke: #777;
+}
+#d3-container-2 {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
