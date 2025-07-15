@@ -67,7 +67,7 @@ var graphSketch3 = function () {  // Define the main function that contains all 
         // ============================================================================
 
         // Create the main SVG container for our graph
-        const svg = d3.select('#d3-container-1')  // Select the HTML element with id 'd3-container-3'
+        const svg = d3.select('#d3-container-2')  // Select the HTML element with id 'd3-container-2'
             .append('svg')  // Create a new SVG element inside that container
             .attr('width', width)  // Set the width of the SVG to our defined width
             .attr('height', height)  // Set the height of the SVG to our defined height

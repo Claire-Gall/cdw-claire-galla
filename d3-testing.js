@@ -1,37 +1,64 @@
-const width = 400, height = 400, radius = Math.min(width, height) / 2;
+// d3-testing.js
 
-const svg = d3.select("#d3-container-0")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height)
-  .append("g")
-  .attr("transform", `translate(${width / 2}, ${height / 2})`);
+const interactionData = [
+  { timestamp: "2025-07-15T10:05:00Z", user: "guest_1" },
+  { timestamp: "2025-07-15T10:10:00Z", user: "guest_2" },
+  { timestamp: "2025-07-15T10:15:30Z", user: "guest_3" },
+  { timestamp: "2025-07-15T10:20:00Z", user: "guest_1" },
+];
 
-const arc = d3.arc()
-  .innerRadius(radius * 0.5)
-  .outerRadius(radius * 0.9);
-
-const pie = d3.pie()
-  .value(d => d.value)
-  .sort(null);
-
-d3.csv("Sand_and_Gravel_Deposits.csv").then(data => {
-  data.forEach(d => d.value = +d.value); // Ensure 'value' is numeric
-
-  const color = d3.scaleOrdinal()
-    .domain(data.map(d => d.label))
-    .range(d3.schemeCategory10);
-
-  const arcs = svg.selectAll("path")
-    .data(pie(data))
-    .enter()
-    .append("path")
-    .attr("d", arc)
-    .attr("fill", d => color(d.data.label))
-    .attr("stroke", "#fff")
-    .attr("stroke-width", "2px")
-    .append("title") // Simple tooltip
-    .text(d => `${d.data.label}: ${d.data.value}`);
-}).catch(error => {
-  console.error("Error loading or parsing CSV:", error);
+// Parse timestamps into JavaScript Date objects
+interactionData.forEach(d => {
+  d.time = new Date(d.timestamp);
 });
+
+// Select the container and define dimensions
+const container = d3.select("#d3-container-1");
+const width = container.node().clientWidth;
+const height = 250;
+const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+
+// Create SVG with responsive settings
+const svg = container.append("svg")
+  .attr("width", "100%")
+  .attr("height", height)
+  .attr("viewBox", `0 0 ${width} ${height}`)
+  .attr("preserveAspectRatio", "xMidYMid meet");
+
+// Define xScale for time
+const xScale = d3.scaleTime()
+  .domain(d3.extent(interactionData, d => d.time))
+  .range([margin.left, width - margin.right]);
+
+// Draw timeline line
+svg.append("line")
+  .attr("x1", xScale.range()[0])
+  .attr("x2", xScale.range()[1])
+  .attr("y1", height / 2)
+  .attr("y2", height / 2)
+  .attr("stroke", "#999")
+  .attr("stroke-width", 2);
+
+// Draw interaction nodes
+const circles = svg.selectAll("circle")
+  .data(interactionData)
+  .enter()
+  .append("circle")
+  .attr("class", "node")
+  .attr("cx", d => xScale(d.time))
+  .attr("cy", height / 2)
+  .attr("r", 6);
+
+// Add tooltips
+circles.append("title")
+  .text(d => `${d.user} @ ${d.time.toLocaleTimeString()}`);
+
+// Draw x-axis
+const xAxis = d3.axisBottom(xScale)
+  .ticks(d3.timeMinute.every(5))
+  .tickFormat(d3.timeFormat("%H:%M"));
+
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", `translate(0, ${height / 2 + 30})`)
+  .call(xAxis);

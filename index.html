@@ -1,151 +1,86 @@
 <!DOCTYPE html>
-<!-- This tells the browser this is an HTML5 document - always include this at the top -->
 <html lang="en">
-<!-- The html tag is the root element that contains everything on the page -->
-<!-- lang="en" tells the browser this page is in English -->
-
 <head>
-  <!-- The head section contains information about the page, not visible content -->
-
-
-  <!-- ------------------------------------------------------------ -->
-  <!-- Load p5.js library from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-  <!-- This loads the p5.js library which provides functions for creating graphics and animations -->
-  <!-- ------------------------------------------------------------ -->
- 
-  <!-- Load Three.js library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- This loads the Three.js library which provides functions for creating 3D graphics and animations -->
-   <!-- ------------------------------------------------------------ -->
-  
-  <!-- Load Three.js OrbitControls -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <!-- This loads the OrbitControls module for interactive camera controls -->
-  <!-- ------------------------------------------------------------ -->
-
-  <!-- ------------------------------------------------------------ -->
-  <!-- Load D3.js library from CDN -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <!-- This loads the D3.js library which provides functions for creating data visualizations -->
-  <!-- ------------------------------------------------------------ -->
-
-
   <meta charset="UTF-8">
-  <!-- This sets the character encoding to UTF-8, which supports special characters and emojis -->
-  
   <title>Module 1</title>
-  <!-- This is the title that appears in the browser tab and bookmarks -->
-  
+
+  <!-- Fonts & Style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- This loads the Roboto font from Google Fonts for use on our page -->
-  
   <link rel="stylesheet" href="style.css">
-  <!-- This links our CSS file to style the page - the href points to our style.css file -->
+
+  <!-- JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Page Styling for Timeline -->
+  <style>
+    #d3-container-1 {
+      width: 100%;
+      max-width: 960px;
+      height: 250px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1rem;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .node {
+      fill: steelblue;
+      stroke: white;
+      stroke-width: 1.5px;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #ccc;
+      shape-rendering: crispEdges;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- The body contains all the visible content that users will see on the page -->
-  
   <header>
-    <!-- The header is typically used for navigation and site branding -->
-    
     <div class="left">Columbia GSAPP</div>
-    <!-- This div creates a container for the left side of the header -->
-    <!-- class="left" allows us to style this specific div with CSS -->
-    
     <div class="center">
-      <!-- This div creates a container for the center of the header -->
       Computational Design Workflows<br>
-      <!-- This is the main text in the center -->
-      <!-- <br> creates a line break, moving the next text to a new line -->
       <span>Exploration of Digital Canvases</span>
-      <!-- span is an inline element that groups text without creating a new line -->
-      <!-- class="center" allows us to style this span differently -->
     </div>
+  </header>
 
   <main>
-    <!-- The main tag contains the primary content of the page -->
-    
     <div class="project-meta">2025</div>
-    <!-- This div displays the year/project metadata -->
-    <!-- class="project-meta" allows us to style this with CSS -->
-    
     <div class="project-title">Computational Workflows Practice and Assignments</div>
-    <!-- This div displays the main project title -->
-    <!-- class="project-title" allows us to style this with CSS -->
-    
     <div class="project-subtitle">Claire Galla</div>
-    <!-- This div displays the student's name as a subtitle -->
-    <!-- class="project-subtitle" allows us to style this with CSS -->
-    
     <div class="advisor">Prof. Catherine Griffiths</div>
-    <!-- This div displays advisor information -->
-    <!-- <br> creates a line break -->
-    <!-- <strong> makes the text bold for emphasis -->
-    
+
     <div class="section-title">D3 Structure Investigation</div>
-    <!-- Section heading for the p5.js canvas demonstration -->
-    
     <p>Integrating temporal canvases into my workflow: exploring the concept of deep time within geological processes.</p>
-    <!-- Introduction to the first section -->
 
-    <!-- ------------------------------------------------------------ -->
-
-    <!-- ADD A NEW 'CANVAS CONTAINER' FOR EACH NEW P5.JS SKETCH (THE ORDER IS DEFINED BY THE CONTAINER NUMBER BELOW + THE MOST RECENT SKETCH SHOULD BE AT THE TOP) -->
-    <!-- Section for first p5.js sketch -->
-
-    <!-- ------------------------------------------------------------ -->
-
-    <!-- 'CANVAS CONTAINER' FOR EACH NEW Three.JS SKETCH --> 
-    <!-- ------------------------------------------------------------ -->
-
-    <!--CANVAS FOR EACH NEW D3.js SKETCH --> 
-  
-    <!-- Section for D3.js Foundation -->
-    <div class="section-title">D3.js First Go</div>
-    <p>This donut chart visualizes U.S. sand and gravel deposit metrics.</p>
-    
-    <!-- Canvas container for D3.js foundation (d3-testing.js) -->
-    <div id="d3-container-0"></div>
-
-    <!-- Section for D3.js Relational Structures -->
-    <div class="relationalstructure1.js">Under Scan: Predicted Relational Structure</div>
-    <p>In these two relational structures, I am generating a relational structure that corresponds to Rafael Lozano-Hemmer's practice in the piece Voz Alta and Under Scan, each in their own right. Under Scan creates a tri-directional relationship between partipant shadows and physical touchpoints within the 1,000-2,000 sq. meter space. The visual language I use is meant to create a spatial narrative of how the physical space was activated through the objects of Voz Alta or Under Scan during a finite period of time. </p>
-  
-    <!-- Canvas container for D3.js relational structures) -->
+    <h2>Nodes of Participation: Rafael Lozano-Hemmer 'Under Scan'</h2>
     <div id="d3-container-1"></div>
 
-        <!-- Section for D3.js Relational Structures -->
-    <div class="relationalstructure2.js">Under Scan: In Practice Relational Structure</div>
-    <p>Relational structure of art piece after participant interaction.</p>
+    <div class="section-title">Under Scan: In Practice</div>
+    <p>In these two relational structures, I am generating a relational structure that corresponds to Rafael Lozano-Hemmer's practice in the piece Voz Alta and Under Scan...</p>
 
-        <!-- Canvas container for D3.js relational structures) -->
     <div id="d3-container-2"></div>
-
+    <div id="d3-container-3"></div>
   </main>
-  <!-- End of main content area -->
-  
-  <!-- ------------------------------------------------------------ -->
 
-  <!-- LOAD EACH NEW P5.JS SCRIPT HERE -->
-
-  <!-- ------------------------------------------------------------ -->
-
-  <!-- LOAD EACH NEW THREE.JS SCRIPT HERE -->
-
+  <!-- Load JavaScript -->
   <script src="3d-primitive.js"></script>
   <script src="orbit-camera.js"></script>
   <script src="atmospheric-geometry.js"></script>
-
-  <!-- ------------------------------------------------------------ -->
-
-  <!-- LOAD EACH NEW D3.JS SCRIPT HERE -->
-
   <script src="d3-testing.js"></script>
   <script src="relationalstructure1.js"></script>
-
 </body>
-<!-- End of body - all visible content goes above this line -->
 </html>
-<!-- End of HTML document -->
