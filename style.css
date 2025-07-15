@@ -128,42 +128,25 @@ button:hover {
   font-style: italic;
 }
 
-/* All D3, Three.js, and p5.js canvas containers */
-#d3-container-1 {
-  width: 100%;
-  display: flex;
-  justify-content: center;  /* centers horizontally */
-  align-items: center;      /* centers vertically if height is defined */
-  padding: 20px 0;          /* optional vertical spacing */
-}
-
-#d3-container-1 svg {
-  display: block;
-  max-width: 100%;
-}
+/* All D3 */
+#d3-container-1
 #d3-container-2,
 #d3-container-3 {
-  position: relative;
+  position: flex;
   background: #030202;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(2, 2, 2, 0.05);
   padding: 1rem;
   min-height: 300px;
-}
-
-/* Any canvas or SVG */
-canvas,
-svg {
-  display: block;
+  width: 500px;
   margin: 0 auto;
-  max-width: 100%;
-  height: auto;
+  transition: background-color 0.3s ease;
 }
 .tooltip {
   font-size: 12px;
 }
 .tooltip {
-  position: relative;
+  position: flex;
   pointer-events: none;
   background: rgba(255, 255, 255, 0.7);
   color: #0c0a0a;
