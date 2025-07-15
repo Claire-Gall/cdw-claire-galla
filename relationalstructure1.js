@@ -1,110 +1,95 @@
-// graph-from-csv.js - CSV-Based Network Graph with D3.js
-// This script demonstrates how to load network data from CSV files
+var graphSketch3 = function () {
+    const width = 800;
+    const height = 400;
 
-var graphSketch3 = function () {  // Define the main function that contains all graph logic
-    // ============================================================================
-    // CANVAS DIMENSIONS
-    // ============================================================================
-
-    // Canvas dimensions - set the size of our visualization area
-    const width = 800;  // Width of the SVG canvas in pixels
-    const height = 400;  // Height of the SVG canvas in pixels
-
-    // ============================================================================
-    // CSV DATA LOADING
-    // ============================================================================
-
-    // Load both CSV files and create the graph when both are loaded
     Promise.all([
-        d3.csv('nodes.csv'),  // Load the nodes data from CSV
-        d3.csv('edges.csv')   // Load the edges data from CSV
+        d3.csv('nodes.csv'),
+        d3.csv('edges.csv')
     ]).then(function ([nodesData, edgesData]) {
-        console.log('Loaded nodes:', nodesData);  // Log the loaded nodes data
-        console.log('Loaded edges:', edgesData);  // Log the loaded edges data
+        console.log('Loaded nodes:', nodesData);
+        console.log('Loaded edges:', edgesData);
 
-        // Process the nodes data - convert string values to appropriate types
+        // Process nodes
         const nodes = nodesData.map(d => ({
             id: d.id,
             name: d.name,
             role: d.role,
-            age: +d.age,  // Convert to number
+            age: +d.age,
             department: d.department,
-            friends: +d.friends,  // Convert to number
-            size: +d.size,  // Convert to number
-            color: d.color
+            friends: +d.friends,
+            size: +d.size || 20,
+            color: d.color || '#3264a8'
         }));
 
-        // Process the edges data - convert string values to appropriate types
+        // Create fake movement data (3 time steps, random positions)
+        nodes.forEach(node => {
+            node.movement = [
+                { x: Math.random() * width, y: Math.random() * height },
+                { x: Math.random() * width, y: Math.random() * height },
+                { x: Math.random() * width, y: Math.random() * height }
+            ];
+        });
+
+        // Process edges and group by time step (assuming edgesData has 'time' column)
         const links = edgesData.map(d => ({
             source: d.source,
             target: d.target,
             relationship: d.relationship,
-            course: d.course || '',  // Handle empty values
-            since: d.since ? +d.since : null,  // Convert to number if exists
-            strength: +d.strength,  // Convert to number
+            course: d.course || '',
+            since: d.since ? +d.since : null,
+            strength: +d.strength,
             type: d.type,
-            department: d.department || ''  // Handle empty values
+            department: d.department || '',
+            time: d.time ? +d.time : 0  // Default time 0 if missing
         }));
 
-        createGraph(nodes, links);  // Create the graph with the processed data
+        // Group links by time step
+        const maxTimeStep = 2; // matches movement length above
+        const linksByTime = [];
+        for (let t = 0; t <= maxTimeStep; t++) {
+            linksByTime[t] = links.filter(l => l.time === t);
+        }
+
+        createGraph(nodes, linksByTime, maxTimeStep);
     }).catch(function (error) {
-        console.error('Error loading CSV files:', error);  // Log any errors
-        // Create a fallback graph with sample data if CSV loading fails
+        console.error('Error loading CSV files:', error);
         const fallbackNodes = [
             { id: 'Error', name: 'CSV Load Error', role: 'error', age: 0, department: 'Error', friends: 0, size: 20, color: '#ff0000' }
         ];
         const fallbackLinks = [];
-        createGraph(fallbackNodes, fallbackLinks);
+        createGraph(fallbackNodes, [fallbackLinks], 0);
     });
 
-    // ============================================================================
-    // GRAPH CREATION FUNCTION
-    // ============================================================================
+    function createGraph(nodes, linksByTime, maxTimeStep) {
+        // Setup SVG and zoom
+        const svg = d3.select('#d3-container-2')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .style('background', '#f0f0f0');
 
-    function createGraph(nodes, links) {
-        // ============================================================================
-        // SVG SETUP WITH ZOOM BEHAVIOR
-        // ============================================================================
-
-        // Create the main SVG container for our graph
-        const svg = d3.select('#d3-container-2')  // Select the HTML element with id 'd3-container-2'
-            .append('svg')  // Create a new SVG element inside that container
-            .attr('width', width)  // Set the width of the SVG to our defined width
-            .attr('height', height)  // Set the height of the SVG to our defined height
-            .style('background', '#f0f0f0');  // Set a light gray background color
-
-        // Create a group that will contain all graph elements and can be transformed
         const g = svg.append('g');
 
-        // Add arrow marker for directed edges - this creates the arrow shape that will appear at the end of directed links
-        g.append('defs').append('marker')  // Create a marker definition in the SVG defs section
-            .attr('id', 'arrowhead-3')  // Give the marker a unique ID so we can reference it later
-            .attr('viewBox', '-0 -5 10 10')  // Define the coordinate system for the marker (x, y, width, height)
-            .attr('refX', 50)  // X position where the arrow should be placed relative to the end of the line
-            .attr('refY', 0)  // Y position where the arrow should be placed (centered)
-            .attr('orient', 'auto')  // Automatically orient the arrow to follow the line direction
-            .attr('markerWidth', 4)  // Width of the arrow marker
-            .attr('markerHeight', 4)  // Height of the arrow marker
-            .append('path')  // Create the actual arrow shape using a path element
-            .attr('d', 'M 0,-4 L 8,0 L 0,4')  // Path data: move to (0,-4), line to (8,0), line to (0,4) - creates a triangle
-            .attr('fill', '#666');  // Fill color of the arrow (dark gray)
+        g.append('defs').append('marker')
+            .attr('id', 'arrowhead-3')
+            .attr('viewBox', '-0 -5 10 10')
+            .attr('refX', 50)
+            .attr('refY', 0)
+            .attr('orient', 'auto')
+            .attr('markerWidth', 4)
+            .attr('markerHeight', 4)
+            .append('path')
+            .attr('d', 'M 0,-4 L 8,0 L 0,4')
+            .attr('fill', '#666');
 
-        // ============================================================================
-        // ZOOM BEHAVIOR SETUP
-        // ============================================================================
-
-        // Create zoom behavior with constraints
         const zoom = d3.zoom()
-            .scaleExtent([0.1, 4])  // Limit zoom scale between 0.1x and 4x
+            .scaleExtent([0.1, 4])
             .on('zoom', (event) => {
-                // Apply the zoom transformation to the main group
                 g.attr('transform', event.transform);
             });
 
-        // Apply zoom behavior to the SVG
         svg.call(zoom);
 
-        // Add zoom controls info
         svg.append('text')
             .attr('x', 10)
             .attr('y', 20)
@@ -112,184 +97,195 @@ var graphSketch3 = function () {  // Define the main function that contains all 
             .attr('fill', '#666')
             .text('Use mouse wheel to zoom, drag to pan');
 
-        // ============================================================================
-        // ENHANCED FORCE SIMULATION
-        // ============================================================================
+        // Create simulation (with empty links, updated dynamically)
+        const simulation = d3.forceSimulation(nodes)
+            .force('link', d3.forceLink([]).id(d => d.id).distance(100))
+            .force('charge', d3.forceManyBody().strength(d => d.role === 'professor' ? -400 : -200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(d => d.size + 5));
 
-        // Create the force simulation that will position the nodes automatically
-        const simulation = d3.forceSimulation(nodes)  // Create a new force simulation with our nodes
-            .force('link', d3.forceLink(links)  // Add a force that pulls connected nodes together
-                .id(d => d.id)  // Tell D3 how to identify each node (using the id property)
-                .distance(d => {  // Set the ideal distance between connected nodes
-                    // Different distances based on relationship type
-                    switch (d.relationship) {
-                        case 'friends': return 80;  // Friends are closer together
-                        case 'colleagues': return 100;  // Colleagues are medium distance
-                        case 'student-teacher': return 120;  // Student-teacher pairs are further apart
-                        default: return 100;  // Default distance for unknown relationships
-                    }
-                }))
-            .force('charge', d3.forceManyBody()  // Add a force that makes nodes repel each other
-                .strength(d => {  // Set the strength of the repulsion
-                    // Professors repel more than students (they're more important, so they get more space)
-                    return d.role === 'professor' ? -400 : -200;
-                }))
-            .force('center', d3.forceCenter(width / 2, height / 2))  // Add a force that pulls all nodes toward the center
-            .force('collision', d3.forceCollide().radius(d => d.size + 5));  // Add a force that prevents nodes from overlapping
+        // Group for links and nodes
+        const linkGroup = g.append('g').attr('class', 'links');
+        const nodeGroup = g.append('g').attr('class', 'nodes');
+        const labelGroup = g.append('g').attr('class', 'labels');
 
-        // ============================================================================
-        // ENHANCED LINK VISUALIZATION
-        // ============================================================================
+        // Create nodes
+        const node = nodeGroup.selectAll('circle')
+            .data(nodes)
+            .enter().append('circle')
+            .attr('r', d => d.size)
+            .attr('fill', d => d.color)
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2)
+            .call(drag(simulation));
 
-        // Create the visual links (lines) between nodes
-        const link = g.append('g')  // Create a group to hold all the link elements
-            .attr('stroke', '#888')  // Set default stroke color for links
-            .attr('stroke-width', 2)  // Set uniform stroke width
-            .selectAll('line')  // Select all line elements (none exist yet)
-            .data(links)  // Bind our links data to the selection
-            .enter().append('line')  // Create a new line element for each link
-            .attr('marker-end', d => d.type === 'directed' ? 'url(#arrowhead-3)' : null);  // Add arrow only to directed relationships
+        // Create labels
+        const label = labelGroup.selectAll('text')
+            .data(nodes)
+            .enter().append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '.35em')
+            .attr('font-size', 16)
+            .attr('fill', '#fff')
+            .text(d => d.id);
 
-        // ============================================================================
-        // ENHANCED NODE VISUALIZATION
-        // ============================================================================
+        // Tooltip setup
+        const tooltip = d3.select('body').append('div')
+            .attr('class', 'tooltip')
+            .style('position', 'absolute')
+            .style('background', 'rgba(0, 0, 0, 0.8)')
+            .style('color', 'white')
+            .style('padding', '8px')
+            .style('border-radius', '4px')
+            .style('font-size', '12px')
+            .style('pointer-events', 'none')
+            .style('opacity', 0);
 
-        // Create the visual nodes (circles) representing people
-        const node = g.append('g')  // Create a group to hold all the node elements
-            .attr('stroke', '#fff')  // Set the border color of nodes to white
-            .attr('stroke-width', 2)  // Set the border thickness of nodes
-            .selectAll('circle')  // Select all circle elements (none exist yet)
-            .data(nodes)  // Bind our nodes data to the selection
-            .enter().append('circle')  // Create a new circle element for each node
-            .attr('r', d => d.size || 20)  // Use size from CSV or default to 20
-            .attr('fill', d => d.color || '#3264a8')  // Use color from CSV or default to blue
-            .call(drag(simulation));  // Add drag behavior to the nodes so users can move them around
-
-        // Add hover effects to make the graph interactive
-        node.on('mouseover', function (event, d) {  // When mouse hovers over a node
-            // Highlight connected links by making them more opaque
+        node.on('mouseover', function (event, d) {
             link.style('stroke-opacity', l =>
-                l.source.id === d.id || l.target.id === d.id ? 1 : 0.1  // Full opacity for connected links, low opacity for others
+                l.source.id === d.id || l.target.id === d.id ? 1 : 0.1
             );
-
-            // Show tooltip with node information
             showTooltip(event, d);
         })
-            .on('mouseout', function (event, d) {  // When mouse leaves a node
-                // Reset link opacity back to normal
+            .on('mouseout', function () {
                 link.style('stroke-opacity', 0.6);
-
-                // Hide tooltip
                 hideTooltip();
             })
-            .on('click', function (event, d) {  // When node is clicked
-                console.log('Clicked on:', d.name, 'Role:', d.role, 'Department:', d.department);  // Log node info to console
+            .on('click', function (event, d) {
+                console.log('Clicked on:', d.name, 'Role:', d.role, 'Department:', d.department);
             });
 
-        // ============================================================================
-        // ENHANCED LABELS
-        // ============================================================================
-
-        // Create text labels for each node showing the person's name
-        const label = g.append('g')  // Create a group to hold all the label elements
-            .selectAll('text')  // Select all text elements (none exist yet)
-            .data(nodes)  // Bind our nodes data to the selection
-            .enter().append('text')  // Create a new text element for each node
-            .attr('text-anchor', 'middle')  // Center the text horizontally on the node
-            .attr('dy', '.35em')  // Adjust vertical position to center text on the node
-            .attr('font-size', 16)  // Set the font size of the labels
-            .attr('fill', '#fff')  // Set the text color to white
-            .text(d => d.id);  // Set the text content to the node ID
-
-        // ============================================================================
-        // TOOLTIP FUNCTIONALITY
-        // ============================================================================
-
-        // Create tooltip div that will show detailed information when hovering over nodes
-        const tooltip = d3.select('body').append('div')  // Create a new div element in the body
-            .attr('class', 'tooltip')  // Give it a CSS class for styling
-            .style('position', 'absolute')  // Position it absolutely so we can place it anywhere
-            .style('background', 'rgba(0, 0, 0, 0.8)')  // Semi-transparent black background
-            .style('color', 'white')  // White text color
-            .style('padding', '8px')  // Add some padding inside the tooltip
-            .style('border-radius', '4px')  // Rounded corners
-            .style('font-size', '12px')  // Small font size
-            .style('pointer-events', 'none')  // Don't let the tooltip interfere with mouse events
-            .style('opacity', 0);  // Start invisible
-
-        function showTooltip(event, d) {  // Function to display the tooltip when hovering over a node
-            tooltip.transition()  // Start a smooth transition animation
-                .duration(200)  // Animation takes 200 milliseconds
-                .style('opacity', 1);  // Make the tooltip fully visible
+        function showTooltip(event, d) {
+            tooltip.transition()
+                .duration(200)
+                .style('opacity', 1);
 
             tooltip.html(`
-        <strong>${d.name}</strong><br/>
-        Role: ${d.role}<br/> 
-        Department: ${d.department}<br/> 
-        Age: ${d.age}<br/> 
-        Friends: ${d.friends}  
-      `)
-                .style('left', (event.pageX + 10) + 'px')  // Position tooltip 10px to the right of mouse
-                .style('top', (event.pageY - 10) + 'px');  // Position tooltip 10px above mouse
+                <strong>${d.name}</strong><br/>
+                Role: ${d.role}<br/> 
+                Department: ${d.department}<br/> 
+                Age: ${d.age}<br/> 
+                Friends: ${d.friends}
+            `)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY - 10) + 'px');
         }
 
-        function hideTooltip() {  // Function to hide the tooltip when mouse leaves a node
-            tooltip.transition()  // Start a smooth transition animation
-                .duration(500)  // Animation takes 500 milliseconds (slower than show)
-                .style('opacity', 0);  // Make the tooltip invisible
+        function hideTooltip() {
+            tooltip.transition()
+                .duration(500)
+                .style('opacity', 0);
         }
 
-        // ============================================================================
-        // ANIMATION LOOP
-        // ============================================================================
+        // Current links selection, will be updated dynamically
+        let link = linkGroup.selectAll('line');
 
-        // This function runs every frame during the force simulation to update visual positions
-        simulation.on('tick', () => {  // 'tick' event fires every frame of the animation
-            link  // Update the position of all links (lines)
-                .attr('x1', d => d.source.x)  // Set the starting X coordinate of each line to the source node's X position
-                .attr('y1', d => d.source.y)  // Set the starting Y coordinate of each line to the source node's Y position
-                .attr('x2', d => d.target.x)  // Set the ending X coordinate of each line to the target node's X position
-                .attr('y2', d => d.target.y);  // Set the ending Y coordinate of each line to the target node's Y position
+        // Update graph for a given time step
+        function updateGraphAtTime(timeStep) {
+            // Fix nodes position based on movement at this time
+            nodes.forEach(n => {
+                if (n.movement && n.movement[timeStep]) {
+                    n.fx = n.movement[timeStep].x;
+                    n.fy = n.movement[timeStep].y;
+                } else {
+                    n.fx = null;
+                    n.fy = null;
+                }
+            });
 
-            node  // Update the position of all nodes (circles)
-                .attr('cx', d => d.x)  // Set the center X coordinate of each circle to the node's X position
-                .attr('cy', d => d.y);  // Set the center Y coordinate of each circle to the node's Y position
+            // Update links for this time step
+            const currentLinks = linksByTime[timeStep] || [];
 
-            label  // Update the position of all labels (text)
-                .attr('x', d => d.x)  // Set the X coordinate of each text label to the node's X position
-                .attr('y', d => d.y);  // Set the Y coordinate of each text label to the node's Y position
+            // DATA JOIN for links
+            link = linkGroup.selectAll('line').data(currentLinks, d => d.source + '-' + d.target);
+
+            // EXIT old links
+            link.exit().remove();
+
+            // ENTER new links
+            const linkEnter = link.enter().append('line')
+                .attr('stroke', '#888')
+                .attr('stroke-width', 2)
+                .attr('marker-end', d => d.type === 'directed' ? 'url(#arrowhead-3)' : null);
+
+            // MERGE enter + update
+            link = linkEnter.merge(link);
+
+            // Update simulation's links and restart
+            simulation.force('link').links(currentLinks);
+            simulation.alpha(1).restart();
+        }
+
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            node
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+
+            label
+                .attr('x', d => d.x)
+                .attr('y', d => d.y);
         });
 
-        // ============================================================================
-        // DRAG BEHAVIOR
-        // ============================================================================
-
-        // Function that creates drag behavior for the nodes
-        function drag(simulation) {  // Takes the force simulation as a parameter
-            function dragstarted(event, d) {  // Called when user starts dragging a node
-                if (!event.active) simulation.alphaTarget(0.3).restart();  // Restart simulation with higher energy if it was cooling down
-                d.fx = d.x;  // Fix the node's X position to where it currently is
-                d.fy = d.y;  // Fix the node's Y position to where it currently is
+        // Drag behavior
+        function drag(sim) {
+            function dragstarted(event, d) {
+                if (!event.active) sim.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
             }
 
-            function dragged(event, d) {  // Called while user is dragging a node
-                d.fx = event.x;  // Update the fixed X position to follow the mouse
-                d.fy = event.y;  // Update the fixed Y position to follow the mouse
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
             }
 
-            function dragended(event, d) {  // Called when user stops dragging a node
-                if (!event.active) simulation.alphaTarget(0);  // Let the simulation cool down naturally
-                d.fx = null;  // Remove the fixed X position so the node can move freely again
-                d.fy = null;  // Remove the fixed Y position so the node can move freely again
+            function dragended(event, d) {
+                if (!event.active) sim.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
             }
 
-            return d3.drag()  // Create a new drag behavior
-                .on('start', dragstarted)  // Attach the dragstarted function to the 'start' event
-                .on('drag', dragged)  // Attach the dragged function to the 'drag' event
-                .on('end', dragended);  // Attach the dragended function to the 'end' event
+            return d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended);
         }
+
+        // Add slider UI dynamically if it doesn't exist in your HTML
+        if (!document.getElementById('timeSlider')) {
+            d3.select('#d3-container-2').append('input')
+                .attr('type', 'range')
+                .attr('min', 0)
+                .attr('max', maxTimeStep)
+                .attr('value', 0)
+                .attr('step', 1)
+                .attr('id', 'timeSlider')
+                .style('width', '100%')
+                .style('margin-top', '10px');
+            d3.select('#d3-container-2').append('label')
+                .attr('for', 'timeSlider')
+                .attr('id', 'timeLabel')
+                .text('Time Step: 0');
+        }
+
+        const slider = d3.select('#timeSlider');
+        const timeLabel = d3.select('#timeLabel');
+
+        slider.on('input', function () {
+            const t = +this.value;
+            timeLabel.text('Time Step: ' + t);
+            updateGraphAtTime(t);
+        });
+
+        // Initialize at time 0
+        updateGraphAtTime(0);
     }
 };
 
-// Execute the sketch - this runs the entire graph visualization
-graphSketch3();  // Call the main function to create and display the network graph 
+graphSketch3();
