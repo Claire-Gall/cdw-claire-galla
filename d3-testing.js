@@ -14,7 +14,7 @@ window.onload = () => {
 
   const container = d3.select("#d3-container-1");
   if (container.empty()) {
-    console.error("Timeline container not found.");
+    console.error("Container #d3-container-1 not found!");
     return;
   }
 

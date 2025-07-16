@@ -44,7 +44,7 @@ var graphSketch3 = function () {
         }));
 
         // Group links by time step
-        const maxTimeStep = 2; // matches movement length above
+        const maxTimeStep = 0; // matches movement length above
         const linksByTime = [];
         for (let t = 0; t <= maxTimeStep; t++) {
             linksByTime[t] = links.filter(l => l.time === t);
@@ -263,8 +263,8 @@ var graphSketch3 = function () {
                 .attr('type', 'range')
                 .attr('min', 0)
                 .attr('max', maxTimeStep)
-                .attr('value', 0)
-                .attr('step', 1)
+                .attr('value', 10)
+                .attr('step', 10)
                 .attr('id', 'timeSlider')
                 .style('width', '100%')
                 .style('margin-top', '10px');

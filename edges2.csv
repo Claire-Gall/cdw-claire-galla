@@ -1,0 +1,9 @@
+source,shadow touchpoint,relationship, path,strength,type, time
+Partipant 1, shadow touchpoint 1,particpant 1-touchpoint 1, path 1,0.8, bi-directional, 45
+Participant 2, shadow touchpoint 2,participant 2-touchpoint 2, path 1,0.6, bi-directional,20
+Participant 3, shadow touchpoint 3,participant 3-touchpoint 3, path 2,0.7, bi-directional,15
+Participant 4, shadow touchpoint 4,participant 4-touchpoint 4, path 2,0.5, bi-directional,10
+Participant 5, shadow touchpoint 5,participant 5-touchpoint 5, path 5,0.9, bi-directional,41
+Participant 6, shadow touchpoint 6,participant 6-touchpoint 6, path 6,0.4, bi-directional,100
+Participant 7, shadow touchpoint 7,participant 7-touchpoint 7, path 7,0.3, bi-directional,60
+Participant 8, shadow touchpoint 8,participant 8-touchpoint 8, path 8,0.2, bi-directional,50
