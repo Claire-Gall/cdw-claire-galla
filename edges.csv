@@ -1,4 +1,4 @@
-source,target,relationship,course,since,strength,type,department
+participant,object,relationship,course,since,strength,type,department
 Alice,Bob,touching-shadow,CS101,2023,0.8,directed,
 Alice,Carol,seeing-imageimage,,2022,0.9,bidirectional,
 Bob,David,bbypassing-sensors,,2020,0.7,bidirectional,Computer Science
