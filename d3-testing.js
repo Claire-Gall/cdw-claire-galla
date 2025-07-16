@@ -6,6 +6,12 @@ window.onload = () => {
     { timestamp: "2025-07-15T10:10:00Z", user: "participant-2" },
     { timestamp: "2025-07-15T10:15:30Z", user: "participant-3" },
     { timestamp: "2025-07-15T10:20:00Z", user: "participant-4" },
+    { timestamp: "2025-07-15T10:25:15Z", user: "participant-5" },
+    { timestamp: "2025-07-15T10:30:45Z", user: "participant-6" },
+    { timestamp: "2025-07-15T10:35:00Z", user: "participant-7" },
+    { timestamp: "2025-07-15T10:40:30Z", user: "participant-8" },
+    { timestamp: "2025-07-15T10:45:00Z", user: "participant-9" },
+    { timestamp: "2025-07-15T10:50:15Z", user: "participant-10" },
   ];
 
   interactionData.forEach(d => {
