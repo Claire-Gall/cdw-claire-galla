@@ -3,6 +3,7 @@
 body {
   font-family: 'Courier New', serif;
   background-color: #f33b27;
+  opacity: 0.95;
   color: #141212;
   margin: 0;
   padding: 0;

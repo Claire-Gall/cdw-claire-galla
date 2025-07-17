@@ -23,7 +23,7 @@ var mapboxSketch = function() {
   // An access token is like a password that lets you use Mapbox services.
   // You need to get a free token from Mapbox's website.
   // Replace this with your own token!
-  mapboxgl.accessToken = 'pk.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; // Replace with your own token <---------------------------------------------------------------------------------------------
+  mapboxgl.accessToken = sk.eyJ1IjoiY2xhaXJlLWdhbGwiLCJhIjoiY21kNm1sc2h4MDFzdTJrb3ZwdmRtZ3ZqZCJ9.nQHYvP2x86Y1DrBO9VAM2g; // Replace with your own token <---------------------------------------------------------------------------------------------
 
   // ============================================================================
   // STEP 2: CREATE THE MAP OBJECT
