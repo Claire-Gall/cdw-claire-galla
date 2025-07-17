@@ -32,8 +32,8 @@ var graphSketch3 = function () {
 
         // Process edges and group by time step (assuming edgesData has 'time' column)
         const links = edgesData.map(d => ({
-            source: d.participant,
-            target: d.object,
+            source: d.source,
+            target: d.target,
             relationship: d.relationship,
             course: d.course || '',
             since: d.since ? +d.since : null,
