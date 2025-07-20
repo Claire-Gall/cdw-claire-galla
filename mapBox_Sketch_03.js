@@ -195,14 +195,14 @@ var mapboxSketch03 = function () {
                     new mapboxgl.Popup()
                         .setLngLat(coordinates)
                         .setHTML(`
-                          <div style="text-align: center;">
-                              <h4>${properties.name}</h4>
-                              <p><strong>Neighborhood ID:</strong> ${properties.cartodb_id}</p>
-                              <p><strong>Created:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
-                              <p><strong>Last Updated:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
-                              <p><em>Click and drag to explore Manhattan's neighborhoods</em></p>
-                          </div>
-                      `)
+                        <div style="text-align: center;">
+                            <h4>${properties.name}</h4>
+                            <p><strong>Neighborhood ID:</strong> ${properties.cartodb_id}</p>
+                            <p><strong>Created:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
+                            <p><strong>Last Updated:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
+                            <p><em>Click and drag to explore Manhattan's neighborhoods</em></p>
+                        </div>
+                    `)
                         .addTo(map3);
                 });
 
@@ -299,24 +299,24 @@ var mapboxSketch03 = function () {
                 console.error('Error loading GeoJSON data:', error);
 
                 // Show error message to user
-                const errorDiv = document.createElement('div');
-                errorDiv.style.cssText = `
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  background: #ff4444;
-                  color: white;
-                  padding: 20px;
-                  border-radius: 8px;
-                  text-align: center;
-                  z-index: 1000;
-              `;
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #ff4444;
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                z-index: 1000;
+            `;
                 errorDiv.innerHTML = `
-                  <h3>Error Loading Data</h3>
-                  <p>Could not load the GeoJSON file. Make sure you're running this on a local server.</p>
-                  <p>Error: ${error.message}</p>
-              `;
+                <h3>Error Loading Data</h3>
+                <p>Could not load the GeoJSON file. Make sure you're running this on a local server.</p>
+                <p>Error: ${error.message}</p>
+            `;
                 document.getElementById('map3').appendChild(errorDiv);
             });
     });
