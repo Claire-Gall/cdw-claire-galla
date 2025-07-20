@@ -37,7 +37,7 @@ var mapboxSketch03 = function() {
   // ============================================================================
   // Using the same map configuration as the previous examples for consistency
   const map3 = new mapboxgl.Map({
-      container: 'geospatialstructure', // HTML container id',
+      container: 'mapbox-container-3', // HTML container id',
       style: 'mapbox://styles/mapbox/light-v11',
       center: [-74.006, 40.7128], // Default center (will be updated when data loads)
       zoom: 11, // Default zoom (will be updated when data loads)
