@@ -280,7 +280,7 @@ var mapboxSketch03 = function() {
               // ====================================================================
               
               console.log('Mapbox External Data Map initialized');
-              console.log('Data loaded from: manhattan.geojson');
+              console.log('Data loaded from: reefs.geojson');
               console.log('Features loaded:');
               console.log(`- ${data.features.filter(f => f.geometry.type === 'MultiPolygon').length} Artifical Reefs Expansion Sites`);
               console.log(`- Total features: ${data.features.length}`);
