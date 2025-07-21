@@ -196,9 +196,9 @@ var mapboxSketch03 = function() {
                       .setHTML(`
                           <div style="text-align: center;">
                               <h4>${properties.name}</h4>
-                              <p><strong>Neighborhood ID:</strong> ${properties.cartodb_id}</p>
-                              <p><strong>Created:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
-                              <p><strong>Last Updated:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
+                              <p><strong>Object ID:</strong> ${properties.cartodb_id}</p>
+                              <p><strong>Reef:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
+                              <p><strong>Source File:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
                               <p><em>Click and drag to examine the proposed sites for artificial reef expansion along New York's southern coast</em></p>
                           </div>
                       `)
@@ -281,7 +281,7 @@ var mapboxSketch03 = function() {
               console.log('Mapbox External Data Map initialized');
               console.log('Data loaded from: manhattan.geojson');
               console.log('Features loaded:');
-              console.log(`- ${data.features.filter(f => f.geometry.type === 'MultiPolygon').length} Manhattan neighborhoods`);
+              console.log(`- ${data.features.filter(f => f.geometry.type === 'MultiPolygon').length} Artifical Reefs Expansion Sites`);
               console.log(`- Total features: ${data.features.length}`);
               console.log('Interactive features:');
               console.log('- Hover effects on neighborhoods');
