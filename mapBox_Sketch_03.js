@@ -199,7 +199,7 @@ var mapboxSketch03 = function() {
                               <p><strong>Neighborhood ID:</strong> ${properties.cartodb_id}</p>
                               <p><strong>Created:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
                               <p><strong>Last Updated:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
-                              <p><em>Click and drag to explore Manhattan's neighborhoods</em></p>
+                              <p><em>Click and drag to examine the proposed sites for artificial reef expansion along New York's southern coast</em></p>
                           </div>
                       `)
                       .addTo(map3);
