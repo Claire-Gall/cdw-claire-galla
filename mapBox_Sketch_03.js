@@ -195,7 +195,7 @@ var mapboxSketch03 = function() {
                       .setLngLat(coordinates)
                       .setHTML(`
                           <div style="text-align: center;">
-                              <h4>${properties.name}</h4>
+                              <p><strong></strong> ${"Reef Proposal"}</p>
                               <p><strong>Object ID:</strong> ${properties.OBJECTID}</p>
                               <p><strong>Reef:</strong> ${properties.Reef}.</p>
                               <p><strong>Type:</strong> ${properties.Type}</p>
