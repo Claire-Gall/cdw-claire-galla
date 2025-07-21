@@ -200,7 +200,7 @@ var mapboxSketch03 = function() {
                               <p><strong>Reef:</strong> ${properties.Reef}.</p>
                               <p><strong>Type:</strong> ${properties.Type}</p>
                               <p><strong>Source File:</strong>${properties.SourceFile}</p>
-                              <p><em>Click and drag to examine the proposed sites for artificial reef expansion along New York's southern coast</em></p>
+                              <p><em>Click and drag to examine the proposed sites for artificial reef expansion along New York's southern coast.</em></p>
                           </div>
                       `)
                       .addTo(map3);
