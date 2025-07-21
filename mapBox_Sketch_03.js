@@ -196,9 +196,10 @@ var mapboxSketch03 = function() {
                       .setHTML(`
                           <div style="text-align: center;">
                               <h4>${properties.name}</h4>
-                              <p><strong>Object ID:</strong> ${properties.cartodb_id}</p>
-                              <p><strong>Reef:</strong> ${new Date(properties.created_at).toLocaleDateString()}</p>
-                              <p><strong>Source File:</strong> ${new Date(properties.updated_at).toLocaleDateString()}</p>
+                              <p><strong>Object ID:</strong> ${properties.OBJECTID}</p>
+                              <p><strong>Reef:</strong> ${properties.Reef}.</p>
+                              <p><strong>Type:</strong> ${properties.Type}</p>
+                              <p><strong>Source File:</strong>${properties.SourceFile}</p>
                               <p><em>Click and drag to examine the proposed sites for artificial reef expansion along New York's southern coast</em></p>
                           </div>
                       `)
