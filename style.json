@@ -44,7 +44,6 @@
     },
     "center": [-34, 38],
     "zoom": 2,
-    "terrain": null,
     "imports": [
         {
             "id": "basemap",

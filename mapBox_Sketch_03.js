@@ -37,7 +37,7 @@ var mapboxSketch03 = function() {
   // ============================================================================
   const map3 = new mapboxgl.Map({
       container: 'mapbox-container-3',
-      style: 'mapbox://styles/mapbox/light-v11', // Local or external style file
+      style: 'style.json', // Local or external style file
       center: [-74.006, 40.7128],
       zoom: 11,
       pitch: 0,
