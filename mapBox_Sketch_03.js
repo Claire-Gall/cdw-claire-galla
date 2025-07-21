@@ -32,15 +32,14 @@ var mapboxSketch03 = function() {
   // Using the same token as the previous examples for consistency
   mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhaXJlLWdhbGwiLCJhIjoiY21kNmw1M2JtMDlqczJxcHR1NjMxZjA2NSJ9.4RsfacX1wV7fzgRQtJ2_lQ';
 
-  // ============================================================================
+// ============================================================================
   // STEP 2: CREATE THE MAP OBJECT
   // ============================================================================
-  // Using the same map configuration as the previous examples for consistency
   const map3 = new mapboxgl.Map({
       container: 'mapbox-container-3',
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-74.006, 40.7128], // Default center (will be updated when data loads)
-      zoom: 11, // Default zoom (will be updated when data loads)
+      style: 'mapbox://styles/mapbox/light-v11', // Local or external style file
+      center: [-74.006, 40.7128],
+      zoom: 11,
       pitch: 0,
       bearing: 0
   });
