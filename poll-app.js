@@ -1,24 +1,9 @@
-// Firebase Poll App - Tutorial JavaScript
-// This script demonstrates how to integrate Firebase Realtime Database with a simple web app
-// It shows real-time data synchronization across multiple users
-
-// Wait for the DOM (Document Object Model) to be fully loaded before running any code
-// This ensures all HTML elements exist before we try to access them
 document.addEventListener('DOMContentLoaded', function() {
   
   // ========================================
   // STEP 1: FIREBASE CONFIGURATION
   // ========================================
-  // Firebase configuration object - this connects your app to your Firebase project
-  // You get these values from your Firebase Console (https://console.firebase.google.com)
-  // 
-  // To set up Firebase:
-  // 1. Go to Firebase Console and create a new project
-  // 2. Add a web app to your project
-  // 3. Copy the config object that Firebase provides
-  // 4. Replace the values below with your actual Firebase config
-  
-  const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyC_5vnSfiopPrAAWPBGTq9Z62fiZjysjrs",
   authDomain: "poll-practice.firebaseapp.com",
   projectId: "poll-practice",
@@ -28,20 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
   measurementId: "G-YZ5J7TJ318"
 };
 
-  // Initialize Firebase - this connects your app to Firebase services
-  // firebase.initializeApp() sets up the connection using your configuration
   firebase.initializeApp(firebaseConfig);
-
-  // Get a reference to the Firebase Realtime Database
-  // This is like getting a "handle" to your database that you can use to read/write data
   const database = firebase.database();
 
   // ========================================
   // STEP 2: GET REFERENCES TO HTML ELEMENTS
   // ========================================
-  // We need to get references to the HTML elements we want to update
-  // This is like getting "handles" to the parts of the webpage we want to change
-  
   const yesButton = document.getElementById('vote-I am satisfied');
   const noButton = document.getElementById('vote-I am unsatisfied');
   const yesCount = document.getElementById('I am satisfied-count');
@@ -52,62 +29,34 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // STEP 3: SET UP REAL-TIME DATABASE LISTENERS
   // ========================================
-  // Firebase Realtime Database can automatically update your app when data changes
-  // We use .on('value') to listen for any changes to our poll data
-  
-  // Listen for changes to the 'yes' votes in the database
-  // This function runs every time the 'yes' vote count changes in Firebase
-  database.ref('poll/I am satisfied').on('value', function(snapshot) {
-    // snapshot.val() gets the current value from the database
-    const count = snapshot.val() || 0; // If no value exists, default to 0
-    
-    // Update the display on our webpage
+  database.ref('poll/Iamsatisfied').on('value', function(snapshot) {
+    const count = snapshot.val() || 0;
     yesCount.textContent = count;
-    
-    // Update the total votes display
     updateTotalVotes();
-    
-    console.log('Yes votes updated:', count); // For debugging
+    console.log('Iamsatisfied votes updated:', count);
   });
 
-  // Listen for changes to the 'no' votes in the database
-  // This function runs every time the 'no' vote count changes in Firebase
-  database.ref('poll/I am unsatisfied').on('value', function(snapshot) {
-    const count = snapshot.val() || 0; // If no value exists, default to 0
-    
-    // Update the display on our webpage
+  database.ref('poll/Iamunsatisfied').on('value', function(snapshot) {
+    const count = snapshot.val() || 0;
     noCount.textContent = count;
-    
-    // Update the total votes display
     updateTotalVotes();
-    
-    console.log('No votes updated:', count); // For debugging
+    console.log('No votes updated:', count);
   });
 
   // ========================================
   // STEP 4: SET UP BUTTON EVENT LISTENERS
   // ========================================
-  // When users click the vote buttons, we need to update the database
-  // Firebase will then automatically update all other connected users
-  
-  // Handle "I am satisfied" vote button clicks
   yesButton.addEventListener('click', function() {
-    console.log('I am satisfied button clicked'); // For debugging
-    
-    // Get the current count from the database and increment it
-    // We use .once('value') to get the current value once, then update it
-    database.ref('poll/I am satisfied').once('value')
+    console.log('Iamsatisfied button clicked');
+    database.ref('poll/Iamsatisfied').once('value')
       .then(function(snapshot) {
-        const currentCount = snapshot.val() || 0; // Current count, or 0 if none exists
-        const newCount = currentCount + 1; // Add 1 to the current count
-        
-        // Update the database with the new count
-        // This will trigger the .on('value') listener above, updating all connected users
-        return database.ref('poll/I am satisfied').set(newCount);
+        const currentCount = snapshot.val() || 0;
+        const newCount = currentCount + 1;
+        return database.ref('poll/Iamsatisfied').set(newCount);
       })
       .then(function() {
-        console.log('I am satisfied vote recorded successfully');
-        showVoteConfirmation('I am satisfied');
+        console.log('Iamsatisfied vote recorded successfully');
+        showVoteConfirmation('Iamsatisfied');
       })
       .catch(function(error) {
         console.error('Error recording vote:', error);
@@ -115,22 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 
-  // Handle "No" vote button clicks
   noButton.addEventListener('click', function() {
-    console.log('No button clicked'); // For debugging
-    
-    // Get the current count from the database and increment it
-    database.ref('poll/I am unsatisfied').once('value')
+    console.log('Iamunsatisfied button clicked');
+    database.ref('poll/Iamunsatisfied').once('value')
       .then(function(snapshot) {
-        const currentCount = snapshot.val() || 0; // Current count, or 0 if none exists
-        const newCount = currentCount + 1; // Add 1 to the current count
-        
-        // Update the database with the new count
-        return database.ref('poll/I am unsatisfied').set(newCount);
+        const currentCount = snapshot.val() || 0;
+        const newCount = currentCount + 1;
+        return database.ref('poll/Iamunsatisfied').set(newCount);
       })
       .then(function() {
-        console.log('I am unsatisfied vote recorded successfully');
-        showVoteConfirmation('I am unsatisfied');
+        console.log('Iamunsatisfied vote recorded successfully');
+        showVoteConfirmation('Iamunsatisfied');
       })
       .catch(function(error) {
         console.error('Error recording vote:', error);
@@ -141,30 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // STEP 5: HELPER FUNCTIONS
   // ========================================
-  // These functions help us manage the user interface and provide feedback
-  
-  /**
-   * updateTotalVotes Function
-   * Purpose: Calculate and display the total number of votes
-   * This function runs whenever either vote count changes
-   */
   function updateTotalVotes() {
-    // Get the current values from our display elements
-    const yesVotes = parseInt(yesCount.textContent) || 0;
-    const noVotes = parseInt(noCount.textContent) || 0;
-    const total = yesVotes + noVotes;
-    
-    // Update the total display
+    const IamsatisfiedVotes = parseInt(yesCount.textContent) || 0; // ✅ Fixed reference
+    const IamunsatisfiedVotes = parseInt(noCount.textContent) || 0; // ✅ Fixed reference
+    const total = IamsatisfiedVotes + IamunsatisfiedVotes;
     totalVotes.textContent = total;
   }
 
-  /**
-   * showVoteConfirmation Function
-   * Purpose: Show a brief confirmation message when a vote is recorded
-   * @param {string} vote - The vote that was recorded ('Yes' or 'No')
-   */
   function showVoteConfirmation(vote) {
-    // Create a temporary confirmation message
     const confirmation = document.createElement('div');
     confirmation.className = 'vote-confirmation';
     confirmation.textContent = `Thank you for voting "${vote}"!`;
@@ -180,11 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
       z-index: 1000;
       animation: slideIn 0.3s ease-out;
     `;
-    
-    // Add the confirmation to the page
     document.body.appendChild(confirmation);
-    
-    // Remove the confirmation after 3 seconds
     setTimeout(function() {
       confirmation.style.animation = 'slideOut 0.3s ease-in';
       setTimeout(function() {
@@ -195,11 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   }
 
-  /**
-   * showError Function
-   * Purpose: Show an error message if something goes wrong
-   * @param {string} message - The error message to display
-   */
   function showError(message) {
     const error = document.createElement('div');
     error.className = 'error-message';
@@ -215,9 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
       font-size: 14px;
       z-index: 1000;
     `;
-    
     document.body.appendChild(error);
-    
     setTimeout(function() {
       if (error.parentNode) {
         error.parentNode.removeChild(error);
@@ -228,19 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // STEP 6: CONNECTION STATUS MONITORING
   // ========================================
-  // Firebase provides connection status information
-  // This helps us know if we're connected to the database
-  
-  // Listen for connection state changes
   database.ref('.info/connected').on('value', function(snapshot) {
     const connected = snapshot.val();
-    
     if (connected) {
-      // We're connected to Firebase
       connectionStatus.innerHTML = '<p style="color: #4CAF50;">✅ Connected to Firebase</p>';
       console.log('Connected to Firebase');
     } else {
-      // We're not connected to Firebase
       connectionStatus.innerHTML = '<p style="color: #f44336;">❌ Disconnected from Firebase</p>';
       console.log('Disconnected from Firebase');
     }
@@ -249,17 +159,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // STEP 7: INITIALIZATION
   // ========================================
-  // Set up any initial state when the page loads
-  
-  // Initialize vote counts to 0 if they don't exist in the database
-  // This ensures we start with a clean slate
   database.ref('poll').once('value')
     .then(function(snapshot) {
       if (!snapshot.exists()) {
-        // If no poll data exists, initialize it with zeros
         return database.ref('poll').set({
-          yes: 0,
-          no: 0
+          Iamsatisfied: 0,      // ✅ Fixed to match usage
+          Iamunsatisfied: 0     // ✅ Fixed to match usage
         });
       }
     })
@@ -270,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error initializing poll:', error);
     });
 
-  // Add CSS animations for the vote confirmation
   const style = document.createElement('style');
   style.textContent = `
     @keyframes slideIn {
@@ -287,31 +191,3 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Firebase Poll App initialized successfully!');
   console.log('Tutorial: This app demonstrates real-time data synchronization with Firebase');
 });
-
-// ========================================
-// FIREBASE TUTORIAL SUMMARY
-// ========================================
-/*
-This tutorial demonstrates several key Firebase concepts:
-
-1. CONFIGURATION: Setting up Firebase with your project credentials
-2. DATABASE REFERENCE: Getting a handle to your Realtime Database
-3. REAL-TIME LISTENERS: Using .on('value') to automatically update UI when data changes
-4. DATA WRITING: Using .set() to save data to the database
-5. DATA READING: Using .once('value') to read data once
-6. ERROR HANDLING: Managing connection issues and errors
-7. CONNECTION MONITORING: Checking if your app is connected to Firebase
-
-Key Benefits of Firebase Realtime Database:
-- Automatic synchronization across all connected users
-- No server management required
-- Real-time updates without page refreshes
-- Built-in offline support
-- Scalable and secure
-
-To use this in your own project:
-1. Create a Firebase project at https://console.firebase.google.com
-2. Replace the firebaseConfig object with your actual project settings
-3. Set up your database rules in the Firebase Console
-4. Deploy your app to Firebase Hosting (optional but recommended)
-*/ 

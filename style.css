@@ -277,7 +277,7 @@ button:hover {
 }
 
 /* Responsive Design */
-  (max-width: 768px)
+  max-width:768px
   .container {
     padding: 15px;
   }
@@ -363,35 +363,35 @@ button:hover {
   overflow: hidden;                   /* Hide overflow for effects */
 }
 
-/* Yes button specific styling */
-.vote-yes {
+/* I am satisfied button specific styling */
+.vote-Iamsatisfied {
   background: linear-gradient(135deg, #d8da88, #f5f098); /* Green gradient */
   color: white;                       /* White text */
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); /* Green shadow */
 }
 
-.vote-yes:hover {
+.vote-Iamsatisfied:hover {
   transform: translateY(-2px);        /* Lift effect on hover */
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4); /* Enhanced shadow */
 }
 
-.vote-yes:active {
+.vote-Iamsatisfied:active {
   transform: translateY(0);           /* Return to normal on click */
 }
 
-/* No button specific styling */
-.vote-no {
+/* I am unsatisfied button specific styling */
+.vote-Iamunsatisfied {
   background: linear-gradient(135deg, #133eaa, #8b8b91); /* Red gradient */
   color: white;                       /* White text */
   box-shadow: 0 4px 15px rgba(20, 19, 19, 0.3); /* Red shadow */
 }
 
-.vote-no:hover {
+.vote-Iamunsatisfied:hover {
   transform: translateY(-2px);        /* Lift effect on hover */
   box-shadow: 0 6px 20px rgba(129, 122, 122, 0.4); /* Enhanced shadow */
 }
 
-.vote-no:active {
+.vote-Iamunsatisfied:active {
   transform: translateY(0);           /* Return to normal on click */
 }
 

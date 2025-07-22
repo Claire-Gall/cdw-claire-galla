@@ -18,8 +18,9 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
   <!----> Firebase
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 
   <!-- Page Styling for Timeline -->
   <header>
@@ -145,22 +146,20 @@
     </div>
     
     <!-- Vote buttons -->
-    <div class="vote-buttons">
-      <button class="vote-btn vote-I am satisfied" id="vote-I am satisfied">
-        <span class="vote-text">I am satisfied</span>
-        <span class="vote-count" id="I am satisfied-count">0</span>
-      </button>
-      
-      <button class="vote-btn vote-I am unsatisfied" id="vote-I am unsatisfied">
-        <span class="vote-text">I am unsatisfied</span>
-        <span class="vote-count" id="I am unsatisfied-count">0</span>
-      </button>
-    </div>
-    
-    <!-- Total votes display -->
-    <div class="total-votes">
-      <p>Total votes: <span id="total-votes">0</span></p>
-    </div>
+  <div class="vote-buttons">
+    <button class="vote-btn vote-Iamsatisfied" id="vote-Iamsatisfied">
+      <span class="vote-text">I am satisfied</span>
+      <span class="vote-count" id="Iamsatisfied-count">0</span>
+    </button>
+
+    <button class="vote-btn vote-Iamunsatisfied" id="vote-Iamunsatisfied">
+      <span class="vote-text">I am unsatisfied</span>
+      <span class="vote-count" id="Iamunsatisfied-count">0</span>
+    </button>
+  </div>
+
+  <div class="total-votes">
+    <p>Total votes: <span>0</span></p>
   </div>
 </div>
 
