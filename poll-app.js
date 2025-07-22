@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // We need to get references to the HTML elements we want to update
   // This is like getting "handles" to the parts of the webpage we want to change
   
-  const yesButton = document.getElementById('vote-yes');
-  const noButton = document.getElementById('vote-no');
-  const yesCount = document.getElementById('yes-count');
-  const noCount = document.getElementById('no-count');
+  const yesButton = document.getElementById('vote-I am satisfied');
+  const noButton = document.getElementById('vote-I am unsatisfied');
+  const yesCount = document.getElementById('I am satisfied-count');
+  const noCount = document.getElementById('I am unsatisfied-count');
   const totalVotes = document.getElementById('total-votes');
   const connectionStatus = document.getElementById('connection-status');
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Listen for changes to the 'yes' votes in the database
   // This function runs every time the 'yes' vote count changes in Firebase
-  database.ref('poll/yes').on('value', function(snapshot) {
+  database.ref('poll/I am satisfied').on('value', function(snapshot) {
     // snapshot.val() gets the current value from the database
     const count = snapshot.val() || 0; // If no value exists, default to 0
     
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Listen for changes to the 'no' votes in the database
   // This function runs every time the 'no' vote count changes in Firebase
-  database.ref('poll/no').on('value', function(snapshot) {
+  database.ref('poll/I am unsatisfied').on('value', function(snapshot) {
     const count = snapshot.val() || 0; // If no value exists, default to 0
     
     // Update the display on our webpage
@@ -90,24 +90,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // When users click the vote buttons, we need to update the database
   // Firebase will then automatically update all other connected users
   
-  // Handle "Yes" vote button clicks
+  // Handle "I am satisfied" vote button clicks
   yesButton.addEventListener('click', function() {
-    console.log('Yes button clicked'); // For debugging
+    console.log('I am satisfied button clicked'); // For debugging
     
     // Get the current count from the database and increment it
     // We use .once('value') to get the current value once, then update it
-    database.ref('poll/yes').once('value')
+    database.ref('poll/I am satisfied').once('value')
       .then(function(snapshot) {
         const currentCount = snapshot.val() || 0; // Current count, or 0 if none exists
         const newCount = currentCount + 1; // Add 1 to the current count
         
         // Update the database with the new count
         // This will trigger the .on('value') listener above, updating all connected users
-        return database.ref('poll/yes').set(newCount);
+        return database.ref('poll/I am satisfied').set(newCount);
       })
       .then(function() {
-        console.log('Yes vote recorded successfully');
-        showVoteConfirmation('Yes');
+        console.log('I am satisfied vote recorded successfully');
+        showVoteConfirmation('I am satisfied');
       })
       .catch(function(error) {
         console.error('Error recording vote:', error);
@@ -120,17 +120,17 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('No button clicked'); // For debugging
     
     // Get the current count from the database and increment it
-    database.ref('poll/no').once('value')
+    database.ref('poll/I am unsatisfied').once('value')
       .then(function(snapshot) {
         const currentCount = snapshot.val() || 0; // Current count, or 0 if none exists
         const newCount = currentCount + 1; // Add 1 to the current count
         
         // Update the database with the new count
-        return database.ref('poll/no').set(newCount);
+        return database.ref('poll/I am unsatisfied').set(newCount);
       })
       .then(function() {
-        console.log('No vote recorded successfully');
-        showVoteConfirmation('No');
+        console.log('I am unsatisfied vote recorded successfully');
+        showVoteConfirmation('I am unsatisfied');
       })
       .catch(function(error) {
         console.error('Error recording vote:', error);
