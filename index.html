@@ -17,6 +17,10 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
+  <!----> Firebase <Libraries-->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
   <!-- Page Styling for Timeline -->
   <header>
     <div class="left">Columbia GSAPP</div>
@@ -127,6 +131,63 @@
             <button id="resetFilters">Reset Search</button>
             <button id="fitToData">Fit to Data</button>
         </div>
+    <!-- Poll Section -->
+    <div class="section-title">Simple Poll</div>
+    <p>Click a button to vote. The results update in real-time thanks to Firebase!</p>
+    
+    <div class="poll-container">
+      <!-- Poll question -->
+      <div class="poll-question">
+        <h3>Are you satisfied with the lighting brightness of this interface? Would you rather be in a dark room right now?</h3>
+      </div>
+      
+      <!-- Vote buttons -->
+      <div class="vote-buttons">
+        <button class="vote-btn vote-yes" id="vote-yes">
+          <span class="vote-text">Yes</span>
+          <span class="vote-count" id="yes-count">0</span>
+        </button>
+        
+        <button class="vote-btn vote-no" id="vote-no">
+          <span class="vote-text">No</span>
+          <span class="vote-count" id="no-count">0</span>
+        </button>
+      </div>
+      
+      <!-- Total votes display -->
+      <div class="total-votes">
+        <p>Total votes: <span id="total-votes">0</span></p>
+      </div>
+    </div>
+
+    <!-- Tutorial Section -->
+    <div class="section-title">How It Works</div>
+    <p>
+      This app demonstrates several key Firebase concepts:
+    </p>
+    
+    <div class="tutorial-steps">
+      <div class="step">
+        <h4>1. Firebase Configuration</h4>
+        <p>We connect to Firebase using configuration settings in our JavaScript file.</p>
+      </div>
+      
+      <div class="step">
+        <h4>2. Real-time Database</h4>
+        <p>When someone votes, the data is saved to Firebase and automatically updates on all connected devices.</p>
+      </div>
+      
+      <div class="step">
+        <h4>3. Event Listeners</h4>
+        <p>Firebase listens for changes in the database and updates our UI automatically.</p>
+      </div>
+    </div>
+
+    <!-- Status Display -->
+    <div class="section-title">Connection Status</div>
+    <div id="connection-status" class="status-display">
+      <p>Connecting to Firebase...</p>
+    </div>
 
 </main>
 
@@ -138,6 +199,7 @@
   <script src="relationalstructure1.js"></script>
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <script src="mapBox_Sketch_03.js"></script>
+  <script src="poll-app.js"></script>
 </body>
 
 </html>
