@@ -277,7 +277,7 @@ button:hover {
 }
 
 /* Responsive Design */
-  max-width:768px
+@media only screen and (max-width: 768px) {
   .container {
     padding: 15px;
   }
@@ -298,6 +298,7 @@ button:hover {
   .controls button {
     width: 200px;
   }
+}
 
 @media only screen and (max-width: 480px) {
   header h1 {

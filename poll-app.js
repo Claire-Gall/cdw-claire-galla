@@ -1,115 +1,83 @@
-// Firebase Poll App - Tutorial JavaScript
-// This script demonstrates how to integrate Firebase Realtime Database with a simple web app
-// It shows real-time data synchronization across multiple users
+// Firebase Poll App - Modular SDK Version
 
-// Wait for the DOM (Document Object Model) to be fully loaded before running any code
-// This ensures all HTML elements exist before we try to access them
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // ========================================
-  // STEP 1: FIREBASE CONFIGURATION
-  // ========================================
-  // Firebase configuration object - this connects your app to your Firebase project
-  // You get these values from your Firebase Console (https://console.firebase.google.com)
-  // 
-  // To set up Firebase:
-  // 1. Go to Firebase Console and create a new project
-  // 2. Add a web app to your project
-  // 3. Copy the config object that Firebase provides
-  // 4. Replace the values below with your actual Firebase config
-  
-  // ========================================
-  // STEP 1: FIREBASE CONFIGURATION
-  // ========================================
-const firebaseConfig = {
-  apiKey: "AIzaSyC_5vnSfiopPrAAWPBGTq9Z62fiZjysjrs",
-  authDomain: "poll-practice.firebaseapp.com",
-  projectId: "poll-practice",
-  storageBucket: "poll-practice.firebasestorage.app",
-  messagingSenderId: "786947095286",
-  appId: "1:786947095286:web:395be6d47a053209768ad7",
-  measurementId: "G-YZ5J7TJ318"
-};
+// Firebase Modular CDN Imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getDatabase, ref, onValue, get, set, child } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
+// Wait until DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function () {
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyASR5SsGma7u4hKdEeLBLPw98kbL_KchY8",
+    authDomain: "poll-practice2.firebaseapp.com",
+    databaseURL: "https://poll-practice2-default-rtdb.firebaseio.com",
+    projectId: "poll-practice2",
+    storageBucket: "poll-practice2.appspot.com",
+    messagingSenderId: "244397860423",
+    appId: "1:244397860423:web:1bdd6f8a56a7d44f8f7362",
+    measurementId: "G-0FSZ8736QE"
+  };
 
-  // ========================================
-  // STEP 2: GET REFERENCES TO HTML ELEMENTS
-  // ========================================
-  const yesButton = document.getElementById('vote-I am satisfied');
-  const noButton = document.getElementById('vote-I am unsatisfied');
-  const yesCount = document.getElementById('I am satisfied-count');
-  const noCount = document.getElementById('I am unsatisfied-count');
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  // DOM Elements
+  const yesButton = document.getElementById('vote-Iamsatisfied');
+  const noButton = document.getElementById('vote-Iamunsatisfied');
+  const yesCount = document.getElementById('Iamsatisfied-count');
+  const noCount = document.getElementById('Iamunsatisfied-count');
   const totalVotes = document.getElementById('total-votes');
   const connectionStatus = document.getElementById('connection-status');
 
-  // ========================================
-  // STEP 3: SET UP REAL-TIME DATABASE LISTENERS
-  // ========================================
-  database.ref('poll/Iamsatisfied').on('value', function(snapshot) {
+  // Real-time listeners
+  onValue(ref(database, 'poll/Iamsatisfied'), (snapshot) => {
     const count = snapshot.val() || 0;
     yesCount.textContent = count;
     updateTotalVotes();
-    console.log('Iamsatisfied votes updated:', count);
   });
 
-  database.ref('poll/Iamunsatisfied').on('value', function(snapshot) {
+  onValue(ref(database, 'poll/Iamunsatisfied'), (snapshot) => {
     const count = snapshot.val() || 0;
     noCount.textContent = count;
     updateTotalVotes();
-    console.log('No votes updated:', count);
   });
 
-  // ========================================
-  // STEP 4: SET UP BUTTON EVENT LISTENERS
-  // ========================================
-  yesButton.addEventListener('click', function() {
-    console.log('Iamsatisfied button clicked');
-    database.ref('poll/Iamsatisfied').once('value')
-      .then(function(snapshot) {
-        const currentCount = snapshot.val() || 0;
-        const newCount = currentCount + 1;
-        return database.ref('poll/Iamsatisfied').set(newCount);
-      })
-      .then(function() {
-        console.log('Iamsatisfied vote recorded successfully');
-        showVoteConfirmation('Iamsatisfied');
-      })
-      .catch(function(error) {
-        console.error('Error recording vote:', error);
-        showError('Failed to record vote. Please try again.');
-      });
+  // Vote button events
+  yesButton.addEventListener('click', () => {
+    const voteRef = ref(database, 'poll/Iamsatisfied');
+    get(voteRef).then(snapshot => {
+      const count = snapshot.val() || 0;
+      return set(voteRef, count + 1);
+    }).then(() => {
+      showVoteConfirmation('I am satisfied');
+    }).catch((error) => {
+      console.error('Error recording vote:', error);
+      showError('Failed to record vote. Please try again.');
+    });
   });
 
-  noButton.addEventListener('click', function() {
-    console.log('Iamunsatisfied button clicked');
-    database.ref('poll/Iamunsatisfied').once('value')
-      .then(function(snapshot) {
-        const currentCount = snapshot.val() || 0;
-        const newCount = currentCount + 1;
-        return database.ref('poll/Iamunsatisfied').set(newCount);
-      })
-      .then(function() {
-        console.log('Iamunsatisfied vote recorded successfully');
-        showVoteConfirmation('Iamunsatisfied');
-      })
-      .catch(function(error) {
-        console.error('Error recording vote:', error);
-        showError('Failed to record vote. Please try again.');
-      });
+  noButton.addEventListener('click', () => {
+    const voteRef = ref(database, 'poll/Iamunsatisfied');
+    get(voteRef).then(snapshot => {
+      const count = snapshot.val() || 0;
+      return set(voteRef, count + 1);
+    }).then(() => {
+      showVoteConfirmation('I am unsatisfied');
+    }).catch((error) => {
+      console.error('Error recording vote:', error);
+      showError('Failed to record vote. Please try again.');
+    });
   });
 
-  // ========================================
-  // STEP 5: HELPER FUNCTIONS
-  // ========================================
+  // Helper: Update total votes
   function updateTotalVotes() {
-    const IamsatisfiedVotes = parseInt(yesCount.textContent) || 0; // ✅ Fixed reference
-    const IamunsatisfiedVotes = parseInt(noCount.textContent) || 0; // ✅ Fixed reference
-    const total = IamsatisfiedVotes + IamunsatisfiedVotes;
-    totalVotes.textContent = total;
+    const yes = parseInt(yesCount.textContent) || 0;
+    const no = parseInt(noCount.textContent) || 0;
+    totalVotes.textContent = yes + no;
   }
 
+  // Helper: Show confirmation message
   function showVoteConfirmation(vote) {
     const confirmation = document.createElement('div');
     confirmation.className = 'vote-confirmation';
@@ -127,16 +95,13 @@ const firebaseConfig = {
       animation: slideIn 0.3s ease-out;
     `;
     document.body.appendChild(confirmation);
-    setTimeout(function() {
+    setTimeout(() => {
       confirmation.style.animation = 'slideOut 0.3s ease-in';
-      setTimeout(function() {
-        if (confirmation.parentNode) {
-          confirmation.parentNode.removeChild(confirmation);
-        }
-      }, 300);
+      setTimeout(() => confirmation.remove(), 300);
     }, 3000);
   }
 
+  // Helper: Show error
   function showError(message) {
     const error = document.createElement('div');
     error.className = 'error-message';
@@ -153,46 +118,24 @@ const firebaseConfig = {
       z-index: 1000;
     `;
     document.body.appendChild(error);
-    setTimeout(function() {
-      if (error.parentNode) {
-        error.parentNode.removeChild(error);
-      }
-    }, 5000);
+    setTimeout(() => error.remove(), 5000);
   }
 
-  // ========================================
-  // STEP 6: CONNECTION STATUS MONITORING
-  // ========================================
-  database.ref('.info/connected').on('value', function(snapshot) {
-    const connected = snapshot.val();
-    if (connected) {
-      connectionStatus.innerHTML = '<p style="color: #4CAF50;">✅ Connected to Firebase</p>';
-      console.log('Connected to Firebase');
-    } else {
-      connectionStatus.innerHTML = '<p style="color: #f44336;">❌ Disconnected from Firebase</p>';
-      console.log('Disconnected from Firebase');
+  // Optional: Initial poll creation if not existing
+  get(ref(database, 'poll')).then(snapshot => {
+    if (!snapshot.exists()) {
+      return set(ref(database, 'poll'), {
+        Iamsatisfied: 0,
+        Iamunsatisfied: 0
+      });
     }
+  }).then(() => {
+    console.log('Poll initialized.');
+  }).catch(err => {
+    console.error('Error initializing poll:', err);
   });
 
-  // ========================================
-  // STEP 7: INITIALIZATION
-  // ========================================
-  database.ref('poll').once('value')
-    .then(function(snapshot) {
-      if (!snapshot.exists()) {
-        return database.ref('poll').set({
-          Iamsatisfied: 0,      // ✅ Fixed to match usage
-          Iamunsatisfied: 0     // ✅ Fixed to match usage
-        });
-      }
-    })
-    .then(function() {
-      console.log('Poll initialized successfully');
-    })
-    .catch(function(error) {
-      console.error('Error initializing poll:', error);
-    });
-
+  // Optional: Add keyframes via JS
   const style = document.createElement('style');
   style.textContent = `
     @keyframes slideIn {
@@ -205,7 +148,4 @@ const firebaseConfig = {
     }
   `;
   document.head.appendChild(style);
-
-  console.log('Firebase Poll App initialized successfully!');
-  console.log('Tutorial: This app demonstrates real-time data synchronization with Firebase');
 });
