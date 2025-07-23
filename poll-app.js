@@ -1,4 +1,22 @@
+// Firebase Poll App - Tutorial JavaScript
+// This script demonstrates how to integrate Firebase Realtime Database with a simple web app
+// It shows real-time data synchronization across multiple users
+
+// Wait for the DOM (Document Object Model) to be fully loaded before running any code
+// This ensures all HTML elements exist before we try to access them
 document.addEventListener('DOMContentLoaded', function() {
+  
+  // ========================================
+  // STEP 1: FIREBASE CONFIGURATION
+  // ========================================
+  // Firebase configuration object - this connects your app to your Firebase project
+  // You get these values from your Firebase Console (https://console.firebase.google.com)
+  // 
+  // To set up Firebase:
+  // 1. Go to Firebase Console and create a new project
+  // 2. Add a web app to your project
+  // 3. Copy the config object that Firebase provides
+  // 4. Replace the values below with your actual Firebase config
   
   // ========================================
   // STEP 1: FIREBASE CONFIGURATION
