@@ -1,14 +1,9 @@
 // 2D Drawing Sketch - using p5.js instance mode
 var sketch1 = function(p) {
-  // All variables are scoped to this instance
-  var canvasWidth = 800;
-  var canvasHeight = 400;
-  var gridSpacing = 40;
-  var canvas;
 
   p.setup = function() {
     canvas = p.createCanvas(canvasWidth, canvasHeight);
-    canvas.parent('canvas-container-1');
+    canvas.parent('p5js-container1');
   };
 
   p.draw = function() {

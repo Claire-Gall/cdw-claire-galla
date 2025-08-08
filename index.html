@@ -37,6 +37,38 @@
     <div class="project-subtitle">Claire Galla</div>
     <div class="advisor">Prof. Catherine Griffiths</div>
 
+  <div class="section-title">Experimenting with 2D spatial movement on web interface</div>
+  <div id="p5js-container1"></div>
+  <style>
+    #p5js-container1 {
+      width: 100%;
+      max-width: 960px;
+      height: 250px;
+      margin: 2rem auto;
+      background: #dde65e;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1rem;
+    }
+  </style>
+
+    <div class="section-title">Experimenting with 3D spatial movement on web interface</div>
+  <div id="p5js-container2"></div>
+  <style>
+    #p5js-container2 {
+      width: 100%;
+      max-width: 960px;
+      height: 250px;
+      margin: 2rem auto;
+      background: #dde65e;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1rem;
+    }
+  </style>
+
     <div class="section-title">D3 Structure Investigation</div>
     <p>Integrating temporal and relational structures into my workflow, with specific attention to my precedent study on relational touchpoints within architectural space as directed by a spatial artist.</p>
 
@@ -146,9 +178,8 @@
 </main>
 
   <!-- Load JavaScript -->
+  <script src="2d-drawing.js"></script>
   <script src="3d-primitive.js"></script>
-  <script src="orbit-camera.js"></script>
-  <script src="atmospheric-geometry.js"></script>
   <script src="d3-testing.js"></script>
   <script src="relationalstructure1.js"></script>
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
