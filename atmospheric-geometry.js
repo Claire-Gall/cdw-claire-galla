@@ -9,7 +9,7 @@
   renderer.setSize(800, 400);
   renderer.setClearColor(0xe6f3ff); // Background matches fog color
 
-  document.getElementById('threejs-container-3').appendChild(renderer.domElement);
+  document.getElementById('p5js-container2').appendChild(renderer.domElement);
 
   // Add light pastel blue fog - following Three.js manual pattern
   scene.fog = new THREE.Fog(0xe6f3ff, 3, 15); // Light pastel blue fog starting at 3, ending at 15
