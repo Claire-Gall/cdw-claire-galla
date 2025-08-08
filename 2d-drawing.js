@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = "my-image.jpg";
     img.alt = "Moving Image";
     Object.assign(img.style, {
-        width: "100px",
-        height: "150px",
+        width: "120px",
+        height: "175px",
         opacity: "0",
         transition: "opacity 2s ease-in-out, transform 2s ease-in-out",
         display: "block",
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startBtn = document.createElement("button");
     startBtn.textContent = "Start Animation";
-    Object.assign(startBtn.style, { padding: "5px 10px", margin: "5px", fontSize: "12px" });
+    Object.assign(startBtn.style, { padding: "5px 10px", margin: "0px", fontSize: "12px" });
 
     const stopBtn = document.createElement("button");
     stopBtn.textContent = "Stop Animation";
-    Object.assign(stopBtn.style, { padding: "5px 10px", margin: "5px", fontSize: "12px" });
+    Object.assign(stopBtn.style, { padding: "5px 10px", margin: "0px", fontSize: "12px" });
 
     section.appendChild(img);
     section.appendChild(startBtn);
