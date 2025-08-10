@@ -1,60 +1,75 @@
-// three-sketch.js
-// This script creates a Three.js scene with a rotating cone on a wireframe grid
+// rotating-primitives.js
+// Three.js scene: rotating black tubes with dramatic lighting and blue fog
 
 (function() {
   // Scene, camera, renderer setup
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, 800 / 400, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(60, 800 / 400, 0.1, 50);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(800, 400);
-  renderer.setClearColor(0xf0f0f0); // Light gray background
+  renderer.setSize(600, 250);
+  renderer.setClearColor(0xe6f3ff); // Background matches fog color
 
-  document.getElementById('threejs-container-1').appendChild(renderer.domElement);
+  document.getElementById('p5js-container2').appendChild(renderer.domElement);
 
-  // Add ambient light
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  // Add light pastel blue fog
+  scene.fog = new THREE.Fog(0xe6f3ff, 3, 15);
+
+  // Simple dramatic lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
   scene.add(ambientLight);
 
-  // Add directional light
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
   directionalLight.position.set(5, 10, 7);
   scene.add(directionalLight);
 
-  // Create a wireframe grid
-  const gridHelper = new THREE.GridHelper(10, 20, 0x888888, 0x888888);
-  scene.add(gridHelper);
+  // Function to create a tube along a path
+  function createTube(offsetX, offsetY, offsetZ) {
+    const path = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(1, 2, 0),
+      new THREE.Vector3(2, 0, 1),
+      new THREE.Vector3(3, 2, 2)
+    ]);
 
-  // Create a rotating flat cone
+    const geometry = new THREE.TubeGeometry(path, 64, 0.3, 8, false);
+    const material = new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.5, metalness: 0.3 });
+    const mesh = new THREE.Mesh(geometry, material);
 
-const radius = 6;  
+    mesh.position.set(offsetX, offsetY, offsetZ);
+    return mesh;
+  }
 
-const height = 8;  
+  // Create three tubes
+  const tube1 = createTube(-4, 1, 2);
+  const tube2 = createTube(0, 2.5, 4);
+  const tube3 = createTube(6, 4, 6);
 
-const radialSegments = 16;  
+  scene.add(tube1, tube2, tube3);
 
-const heightSegments = 2;  
+  // Camera position for good view of all objects
+  camera.position.set(-10, 8, 4);
+  camera.lookAt(0, 2, 0);
 
-const openEnded = true;  
-const thetaStart = Math.PI * 0.25;  
+  // OrbitControls
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.1;
+  controls.screenSpacePanning = false;
+  controls.minDistance = 8;
+  controls.maxDistance = 40;
+  controls.target.set(0, 2, 0);
 
-const thetaLength = Math.PI * 1.5;  
-
-const geometry = new THREE.ConeGeometry(
-	radius, height,
-	radialSegments, heightSegments,
-	openEnded,
-	thetaStart, thetaLength );
-
-  // Position the camera
-  camera.position.set(3, 3, 5);
-  camera.lookAt(0, 0.5, 0);
-
-  // Animation loop
+  // Animation loop (all tubes same rotation)
   function animate() {
     requestAnimationFrame(animate);
-    cone.rotation.x += 0.01;
-    cone.rotation.y += 0.01;
+
+    [tube1, tube2, tube3].forEach(tube => {
+      tube.rotation.y += 0.03;
+      tube.rotation.x += 0.015;
+    });
+
+    controls.update();
     renderer.render(scene, camera);
   }
   animate();
-})(); 
+})();
