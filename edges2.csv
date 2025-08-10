@@ -1,9 +1,41 @@
-source,shadow touchpoint,relationship, path,strength,type, time
-Partipant 1, shadow touchpoint 1,particpant 1-touchpoint 1, path 1,0.8, bi-directional, 45
-Participant 2, shadow touchpoint 2,participant 2-touchpoint 2, path 1,0.6, bi-directional,20
-Participant 3, shadow touchpoint 3,participant 3-touchpoint 3, path 2,0.7, bi-directional,15
-Participant 4, shadow touchpoint 4,participant 4-touchpoint 4, path 2,0.5, bi-directional,10
-Participant 5, shadow touchpoint 5,participant 5-touchpoint 5, path 5,0.9, bi-directional,41
-Participant 6, shadow touchpoint 6,participant 6-touchpoint 6, path 6,0.4, bi-directional,100
-Participant 7, shadow touchpoint 7,participant 7-touchpoint 7, path 7,0.3, bi-directional,60
-Participant 8, shadow touchpoint 8,participant 8-touchpoint 8, path 8,0.2, bi-directional,50
+source,shadow touchpoint,relationship,path,strength,type,time
+Participant 1,shadow touchpoint 1,Participant 1-shadow touchpoint 1,path 1,0.38,bi-directional,55
+Participant 2,shadow touchpoint 2,Participant 2-shadow touchpoint 2,path 2,0.47,bi-directional,106
+Participant 3,shadow touchpoint 3,Participant 3-shadow touchpoint 3,path 3,0.32,bi-directional,90
+Participant 4,shadow touchpoint 4,Participant 4-shadow touchpoint 4,path 4,0.32,bi-directional,45
+Participant 5,shadow touchpoint 5,Participant 5-shadow touchpoint 5,path 5,0.17,bi-directional,79
+Participant 6,shadow touchpoint 6,Participant 6-shadow touchpoint 6,path 6,0.38,bi-directional,113
+Participant 7,shadow touchpoint 7,Participant 7-shadow touchpoint 7,path 7,0.92,bi-directional,39
+Participant 8,shadow touchpoint 8,Participant 8-shadow touchpoint 8,path 8,0.9,bi-directional,77
+Participant 9,shadow touchpoint 9,Participant 9-shadow touchpoint 9,path 9,0.49,bi-directional,113
+Participant 10,shadow touchpoint 10,Participant 10-shadow touchpoint 10,path 10,0.36,bi-directional,40
+Participant 11,shadow touchpoint 11,Participant 11-shadow touchpoint 11,path 11,0.61,bi-directional,32
+Participant 12,shadow touchpoint 12,Participant 12-shadow touchpoint 12,path 12,0.32,bi-directional,33
+Participant 13,shadow touchpoint 13,Participant 13-shadow touchpoint 13,path 13,0.27,bi-directional,92
+Participant 14,shadow touchpoint 14,Participant 14-shadow touchpoint 14,path 14,0.43,bi-directional,30
+Participant 15,shadow touchpoint 15,Participant 15-shadow touchpoint 15,path 15,0.85,bi-directional,69
+Participant 16,shadow touchpoint 16,Participant 16-shadow touchpoint 16,path 16,0.78,bi-directional,113
+Participant 17,shadow touchpoint 17,Participant 17-shadow touchpoint 17,path 17,0.11,bi-directional,87
+Participant 18,shadow touchpoint 18,Participant 18-shadow touchpoint 18,path 18,0.9,bi-directional,31
+Participant 19,shadow touchpoint 19,Participant 19-shadow touchpoint 19,path 19,0.6,bi-directional,17
+Participant 20,shadow touchpoint 20,Participant 20-shadow touchpoint 20,path 20,0.76,bi-directional,41
+Participant 21,shadow touchpoint 21,Participant 21-shadow touchpoint 21,path 21,0.35,bi-directional,114
+Participant 22,shadow touchpoint 22,Participant 22-shadow touchpoint 22,path 22,0.88,bi-directional,22
+Participant 23,shadow touchpoint 23,Participant 23-shadow touchpoint 23,path 23,0.83,bi-directional,13
+Participant 24,shadow touchpoint 24,Participant 24-shadow touchpoint 24,path 24,0.7,bi-directional,7
+Participant 25,shadow touchpoint 25,Participant 25-shadow touchpoint 25,path 25,0.34,bi-directional,113
+Participant 26,shadow touchpoint 26,Participant 26-shadow touchpoint 26,path 26,0.11,bi-directional,19
+Participant 27,shadow touchpoint 27,Participant 27-shadow touchpoint 27,path 27,0.33,bi-directional,66
+Participant 28,shadow touchpoint 28,Participant 28-shadow touchpoint 28,path 28,0.34,bi-directional,55
+Participant 29,shadow touchpoint 29,Participant 29-shadow touchpoint 29,path 29,0.86,bi-directional,87
+Participant 30,shadow touchpoint 30,Participant 30-shadow touchpoint 30,path 30,0.28,bi-directional,19
+Participant 31,shadow touchpoint 31,Participant 31-shadow touchpoint 31,path 31,0.21,bi-directional,84
+Participant 32,shadow touchpoint 32,Participant 32-shadow touchpoint 32,path 32,0.27,bi-directional,118
+Participant 33,shadow touchpoint 33,Participant 33-shadow touchpoint 33,path 33,0.19,bi-directional,63
+Participant 34,shadow touchpoint 34,Participant 34-shadow touchpoint 34,path 34,0.46,bi-directional,49
+Participant 35,shadow touchpoint 35,Participant 35-shadow touchpoint 35,path 35,0.75,bi-directional,22
+Participant 36,shadow touchpoint 36,Participant 36-shadow touchpoint 36,path 36,0.43,bi-directional,53
+Participant 37,shadow touchpoint 37,Participant 37-shadow touchpoint 37,path 37,0.46,bi-directional,17
+Participant 38,shadow touchpoint 38,Participant 38-shadow touchpoint 38,path 38,0.18,bi-directional,89
+Participant 39,shadow touchpoint 39,Participant 39-shadow touchpoint 39,path 39,0.41,bi-directional,59
+Participant 40,shadow touchpoint 40,Participant 40-shadow touchpoint 40,path 40,0.87,bi-directional,101

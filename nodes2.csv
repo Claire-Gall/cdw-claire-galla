@@ -1,41 +1,41 @@
-id,Art,Type of Piece,Level of Play (1-10),color, time
-Participant 1,Under Scan,Installation,8,#ff5733, 0
-Participant 2,Under Scan,Installation,2,#33ff57, 2
-Participant 3,Under Scan,Installation,3,#3357ff, 5
-Participant 4,Under Scan,Installation,5,#f1c40f, 6
-Participant 5,Under Scan,Installation,5,#8e44ad, 10
-Participant 6,Under Scan,Installation,7,#e74c3c, 9
-Participant 7,Under Scan,Installation,9,#3498db, 2
-Participant 8,Under Scan,Installation,10,#2ecc71, 8
-Participant 9,Under Scan,Installation,10,#9b59b6, 7
-Participant 10,Under Scan,Installation,10,#f39c12, 1
-Participant 11,Under Scan,Installation,2,#d35400,  3
-Participant 12,Under Scan,Installation,1,#1abc9c, 4
-Participant 13,Under Scan,Installation,8,#34495e, 5
-Participant 14,Under Scan,Installation,9,#e67e22,  6
-Participant 15,Under Scan,Installation,10,#c0392b, 9
-Participant 16,Under Scan,Installation,7,#7f8c8d, 10
-Participant 17,Under Scan,Installation,6,#16a085, 1
-Participant 18,Under Scan,Installation,4,#2980b9, 2
-Participant 19,Under Scan,Installation,3,#8e44ad, 4
-Participant 20,Under Scan,Installation,5,#f1c40f, 5
-Participant 21,Under Scan,Installation,8,#2c3e50, 6
-Participant 22,Under Scan,Installation,9,#d35400,  8
-Participant 23,Under Scan,Installation,10,#e67e22, 10
-Participant 24,Under Scan,Installation,3,#c0392b, 3
-Participant 25,Under Scan,Installation,8,#f39c12, 7
-Participant 26,Under Scan,Installation,8,#1abc9c, 8
-Participant 27,Under Scan,Installation,8,#34495e, 5
-Participant 28,Under Scan,Installation,9,#16a085, 4
-Participant 29,Under Scan,Installation,10,#2980b9, 9
-Participant 30,Under Scan,Installation,6,#8e44ad, 2
-Participant 31,Under Scan,Installation,9,#f1c40f, 1
-Participant 32,Under Scan,Installation,4,#2c3e50, 3
-Participant 33,Under Scan,Installation,6,#d35400, 4
-Participant 34,Under Scan,Installation,7,#e67e22, 6
-Participant 35,Under Scan,Installation,7,#c0392b, 8
-Participant 36,Under Scan,Installation,7,#f39c12, 5
-Participant 37,Under Scan,Installation,7,#1abc9c, 7
-Participant 38,Under Scan,Installation,9,#34495e, 1
-Participant 39,Under Scan,Installation,2,#16a085, 2
-Participant 40,Under Scan,Installation,10,#2980b9, 10
+id,name,role,age,department,friends,size,color
+Participant 1,Under Scan,Installation,0,Art,0,8,#ff5733
+Participant 2,Under Scan,Installation,0,Art,0,2,#33ff57
+Participant 3,Under Scan,Installation,0,Art,0,3,#3357ff
+Participant 4,Under Scan,Installation,0,Art,0,5,#f1c40f
+Participant 5,Under Scan,Installation,0,Art,0,5,#8e44ad
+Participant 6,Under Scan,Installation,0,Art,0,7,#e74c3c
+Participant 7,Under Scan,Installation,0,Art,0,9,#3498db
+Participant 8,Under Scan,Installation,0,Art,0,10,#2ecc71
+Participant 9,Under Scan,Installation,0,Art,0,10,#9b59b6
+Participant 10,Under Scan,Installation,0,Art,0,10,#f39c12
+Participant 11,Under Scan,Installation,0,Art,0,2,#d35400
+Participant 12,Under Scan,Installation,0,Art,0,1,#1abc9c
+Participant 13,Under Scan,Installation,0,Art,0,8,#34495e
+Participant 14,Under Scan,Installation,0,Art,0,9,#e67e22
+Participant 15,Under Scan,Installation,0,Art,0,10,#c0392b
+Participant 16,Under Scan,Installation,0,Art,0,7,#7f8c8d
+Participant 17,Under Scan,Installation,0,Art,0,6,#16a085
+Participant 18,Under Scan,Installation,0,Art,0,4,#2980b9
+Participant 19,Under Scan,Installation,0,Art,0,3,#8e44ad
+Participant 20,Under Scan,Installation,0,Art,0,5,#f1c40f
+Participant 21,Under Scan,Installation,0,Art,0,8,#2c3e50
+Participant 22,Under Scan,Installation,0,Art,0,9,#d35400
+Participant 23,Under Scan,Installation,0,Art,0,10,#e67e22
+Participant 24,Under Scan,Installation,0,Art,0,3,#c0392b
+Participant 25,Under Scan,Installation,0,Art,0,8,#f39c12
+Participant 26,Under Scan,Installation,0,Art,0,8,#1abc9c
+Participant 27,Under Scan,Installation,0,Art,0,8,#34495e
+Participant 28,Under Scan,Installation,0,Art,0,9,#16a085
+Participant 29,Under Scan,Installation,0,Art,0,10,#2980b9
+Participant 30,Under Scan,Installation,0,Art,0,6,#8e44ad
+Participant 31,Under Scan,Installation,0,Art,0,9,#f1c40f
+Participant 32,Under Scan,Installation,0,Art,0,4,#2c3e50
+Participant 33,Under Scan,Installation,0,Art,0,6,#d35400
+Participant 34,Under Scan,Installation,0,Art,0,7,#e67e22
+Participant 35,Under Scan,Installation,0,Art,0,7,#c0392b
+Participant 36,Under Scan,Installation,0,Art,0,7,#f39c12
+Participant 37,Under Scan,Installation,0,Art,0,7,#1abc9c
+Participant 38,Under Scan,Installation,0,Art,0,9,#34495e
+Participant 39,Under Scan,Installation,0,Art,0,2,#16a085
+Participant 40,Under Scan,Installation,0,Art,0,10,#2980b9

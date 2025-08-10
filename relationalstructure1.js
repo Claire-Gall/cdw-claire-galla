@@ -3,8 +3,8 @@ var graphSketch3 = function () {
     const height = 400;
 
     Promise.all([
-        d3.csv('nodes.csv'),
-        d3.csv('edges.csv')
+        d3.csv('nodes2.csv'),
+        d3.csv('edges2.csv')
     ]).then(function ([nodesData, edgesData]) {
         console.log('Loaded nodes:', nodesData);
         console.log('Loaded edges:', edgesData);
